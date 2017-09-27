@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
  * A class providing static IO methods for reading and writing Student records
@@ -54,7 +55,7 @@ public class StudentRecordIO {
 				//   duplicate is set to true, and the duplicate will not be added to
 				//   the ArrayList of students.
 				for (int i = 0; i < students.size(); i++) {
-					Student s = students.get(i);
+					User s = students.get(i);
 					// A Student is a duplicate if its ID matches one in the students ArrayList.
 					if (student.getId().equals(s.getId())) {
 						//it's a duplicate

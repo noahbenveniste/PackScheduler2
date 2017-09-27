@@ -456,16 +456,16 @@ public class StudentTest {
 	public void testEqualsObject() {
 		//Create objects for testing
 		String str = "Student";
-		Student s0 = null;
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
-		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
-		Student s3 = new Student("Foo", LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
-		Student s4 = new Student(FIRST_NAME, "Bar", ID, EMAIL, HASHED_PASSWORD, CREDITS);
-		Student s5 = new Student(FIRST_NAME, LAST_NAME, "foobar", EMAIL, HASHED_PASSWORD, CREDITS);
-		Student s6 = new Student(FIRST_NAME, LAST_NAME, ID, "foobar@ncsu.edu", HASHED_PASSWORD, CREDITS);
-		Student s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "drowssap", CREDITS);
-		Student s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, 5);
-		Student s9 = new Student("Foo", "Bar", "foobar", "foobar@ncsu.edu", "drowssap");
+		User s0 = null;
+		User s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
+		User s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
+		User s3 = new Student("Foo", LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
+		User s4 = new Student(FIRST_NAME, "Bar", ID, EMAIL, HASHED_PASSWORD, CREDITS);
+		User s5 = new Student(FIRST_NAME, LAST_NAME, "foobar", EMAIL, HASHED_PASSWORD, CREDITS);
+		User s6 = new Student(FIRST_NAME, LAST_NAME, ID, "foobar@ncsu.edu", HASHED_PASSWORD, CREDITS);
+		User s7 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, "drowssap", CREDITS);
+		User s8 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, 5);
+		User s9 = new Student("Foo", "Bar", "foobar", "foobar@ncsu.edu", "drowssap");
 		
 		//Test that comparing to a null student returns false
 		assertFalse(s1.equals(s0));
@@ -496,9 +496,9 @@ public class StudentTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
-		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
-		Student s3 = new Student("Foo", "Bar", "foobar", "foobar@ncsu.edu", "drowssap");
+		User s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
+		User s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
+		User s3 = new Student("Foo", "Bar", "foobar", "foobar@ncsu.edu", "drowssap");
 		
 		//Test that two unequal objects have different hash code
 		assertNotEquals(s2.hashCode(), s3.hashCode());
@@ -513,12 +513,12 @@ public class StudentTest {
 	@Test
 	public void testToString() {
 		//Test toString for object constructed with credits param
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
+		User s1 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD, CREDITS);
 		String str1 = "first,last,id,email@ncsu.edu,hashedpassword,10";
 		assertEquals(s1.toString(), str1);
 		
 		//Test toString for object constructed without credits param
-		Student s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
+		User s2 = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, HASHED_PASSWORD);
 		String str2 = "first,last,id,email@ncsu.edu,hashedpassword,18";
 		assertEquals(s2.toString(), str2);
 	}

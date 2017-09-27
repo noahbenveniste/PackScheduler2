@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
  * Maintains a directory of all students enrolled at NC State.
@@ -95,7 +96,7 @@ public class StudentDirectory {
 		Student student = new Student(firstName, lastName, id, email, hashPW, maxCredits);
 		
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			Student s = studentDirectory.get(i);
+			User s = studentDirectory.get(i);
 			if (s.getId().equals(student.getId())) {
 				return false;
 			}
@@ -111,7 +112,7 @@ public class StudentDirectory {
 	 */
 	public boolean removeStudent(String studentId) {
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			Student s = studentDirectory.get(i);
+			User s = studentDirectory.get(i);
 			if (s.getId().equals(studentId)) {
 				studentDirectory.remove(i);
 				return true;
@@ -127,7 +128,7 @@ public class StudentDirectory {
 	public String[][] getStudentDirectory() {
 		String [][] directory = new String[studentDirectory.size()][3];
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			Student s = studentDirectory.get(i);
+			User s = studentDirectory.get(i);
 			directory[i][0] = s.getFirstName();
 			directory[i][1] = s.getLastName();
 			directory[i][2] = s.getId();
