@@ -138,8 +138,13 @@ public class StudentDirectory {
 	/**
 	 * 
 	 */
-	public Student getStudentById(String studentName) {
-		
+	public Student getStudentById(String studentId) {
+		for (int i = 0; i < studentDirectory.size(); i++) {
+			if (studentDirectory.get(i).getId().equals(studentId)) {
+				return studentDirectory.get(i);
+			}
+		}
+		return null;
 	}
 	
 	/**
