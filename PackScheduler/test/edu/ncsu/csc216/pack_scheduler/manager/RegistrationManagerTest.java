@@ -22,7 +22,7 @@ public class RegistrationManagerTest {
 
 	@Test
 	public void testGetCourseCatalog() {
-		fail("Not yet implemented");
+		assertEquals(manager.getCourseCatalog().getCourseCatalog().length, 0);
 	}
 
 	@Test
