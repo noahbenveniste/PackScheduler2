@@ -251,17 +251,16 @@ public class StudentDirectoryTest {
 	 * Tests getStudentById()
 	 */
 	@Test
-	private void testGetStudentById() {
+	public void testGetStudentById() {
 		// Create a student directory and add a student
 		StudentDirectory sd = new StudentDirectory();
-		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com","pw", "pw", 15);
 		
 		// Create a student object identical to the one that was just added
 		Student s1 = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", 15);
 		
 		// Test getting a student that exists in the directory
-		Student s2 = sd.getStudentById("zking");
-		assertTrue(s2.equals(s1));
+		assertEquals(sd.getStudentById("zking").getId(), s1.getId());
 		
 		// Test getting a student the does not exist in the directory
 		Student s3 = sd.getStudentById("kwhildne");
