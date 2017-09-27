@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * Tests StudentDirectory.
  * @author Sarah Heckman
@@ -246,6 +248,26 @@ public class StudentDirectoryTest {
 	}
 	
 	/**
+	 * Tests getStudentById()
+	 */
+	@Test
+	private void testGetStudentById() {
+		// Create a student directory and add a student
+		StudentDirectory sd = new StudentDirectory();
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		
+		// Create a student object identical to the one that was just added
+		Student s1 = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", 15);
+		
+		// Test getting a student that exists in the directory
+		Student s2 = sd.getStudentById("zking");
+		assertTrue(s2.equals(s1));
+		
+		// Test getting a student the does not exist in the directory
+		Student s3 = sd.getStudentById("kwhildne");
+		assertNull(s3);
+	}
+	/**
 	 * Helper method to compare two files for the same contents
 	 * @param expFile expected output
 	 * @param actFile actual output
@@ -265,4 +287,5 @@ public class StudentDirectoryTest {
 			fail("Error reading files.");
 		}
 	}
+	
 }
