@@ -25,6 +25,8 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
+		this.courseCatalog = new CourseCatalog();
+		this.studentDirectory = new StudentDirectory();
 	}
 
 	private void createRegistrar() {
