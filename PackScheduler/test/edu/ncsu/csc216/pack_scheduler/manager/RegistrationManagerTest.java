@@ -22,7 +22,7 @@ public class RegistrationManagerTest {
 
 	@Test
 	public void testGetCourseCatalog() {
-		assertEquals(manager.getCourseCatalog().getCourseCatalog().length, 0);
+		fail();
 	}
 
 	@Test
