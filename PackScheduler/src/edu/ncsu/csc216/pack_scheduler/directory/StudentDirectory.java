@@ -136,7 +136,9 @@ public class StudentDirectory {
 	}
 	
 	/**
-	 * 
+	 * Indexes the studentDirectory sorted list and compares each student's id to the input id. 
+	 * @param studentId the student id to search for
+	 * @return the Student object that corresponds to the input id, or null if the student does not exist
 	 */
 	public Student getStudentById(String studentId) {
 		for (int i = 0; i < studentDirectory.size(); i++) {

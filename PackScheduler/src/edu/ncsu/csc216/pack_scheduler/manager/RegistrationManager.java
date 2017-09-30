@@ -69,21 +69,28 @@ public class RegistrationManager {
 		return studentDirectory;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param password
+	 * @return
+	 */
 	public boolean login(String id, String password) {
 		Student s = studentDirectory.getStudentById(id);
-		try {
-			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
-			digest.update(password.getBytes());
-			String localHashPW = new String(digest.digest());
-			if (s.getPassword().equals(localHashPW)) {
-				currentUser = s;
-				return true;
+		if (s != null) {
+			MessageDigest digest;
+			try {
+				digest = MessageDigest.getInstance(HASH_ALGORITHM);
+				digest.update(password.getBytes());
+				String localHashPW = new String(digest.digest());
+				if (s.getPassword().equals(localHashPW)) {
+					currentUser = s;
+					return true;
+				}
+			} catch (NoSuchAlgorithmException e) {
+				throw new IllegalArgumentException();
 			}
-		} catch (NoSuchAlgorithmException e) {
-			throw new IllegalArgumentException();
-		}
-
-		if (registrar.getId().equals(id)) {
+		} else if (registrar.getId().equals(id)) {
 			MessageDigest digest;
 			try {
 				digest = MessageDigest.getInstance(HASH_ALGORITHM);
@@ -97,8 +104,7 @@ public class RegistrationManager {
 				throw new IllegalArgumentException();
 			}
 		}
-
-		return false;
+	return false;
 	}
 
 	public void logout() {
@@ -106,11 +112,11 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * @return
+	 * Getter for currentUser
+	 * @return the current User
 	 */
 	public User getCurrentUser() {
-		// TODO implement method
-		return null;
+		return this.currentUser;
 	}
 
 	public void clearData() {
