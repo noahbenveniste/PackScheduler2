@@ -12,6 +12,13 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
+
+/**
+ * 
+ * @author Noah Benveniste
+ * @author Kevin Hildner
+ * @author Kristina Fialo
+ */
 public class RegistrationManagerTest {
 	
 	private RegistrationManager manager;

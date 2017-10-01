@@ -12,6 +12,12 @@ import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
+/**
+ * 
+ * @author Noah Benveniste
+ * @author Kevin Hildner
+ * @author Kristina Fialo
+ */
 public class RegistrationManager {
 
 	private static RegistrationManager instance;
@@ -23,12 +29,18 @@ public class RegistrationManager {
 	private static final String HASH_ALGORITHM = "SHA-256";
 	private static final String PROP_FILE = "registrar.properties";
 
+	/**
+	 * 
+	 */
 	private RegistrationManager() {
 		createRegistrar();
 		this.courseCatalog = new CourseCatalog();
 		this.studentDirectory = new StudentDirectory();
 	}
 
+	/**
+	 * 
+	 */
 	private void createRegistrar() {
 		Properties prop = new Properties();
 
@@ -44,6 +56,11 @@ public class RegistrationManager {
 		}
 	}
 
+	/**
+	 * 
+	 * @param pw
+	 * @return
+	 */
 	private String hashPW(String pw) {
 		try {
 			MessageDigest digest1 = MessageDigest.getInstance(HASH_ALGORITHM);
@@ -54,6 +71,10 @@ public class RegistrationManager {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static RegistrationManager getInstance() {
 		if (instance == null) {
 			instance = new RegistrationManager();
@@ -61,10 +82,18 @@ public class RegistrationManager {
 		return instance;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public CourseCatalog getCourseCatalog() {
 		return courseCatalog;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
 	}
@@ -107,6 +136,9 @@ public class RegistrationManager {
 	return false;
 	}
 
+	/**
+	 * 
+	 */
 	public void logout() {
 		currentUser = registrar;
 	}
@@ -119,11 +151,20 @@ public class RegistrationManager {
 		return this.currentUser;
 	}
 
+	/**
+	 * 
+	 */
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
 	}
 
+	/**
+	 * 
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 * @author Kristina Fialo
+	 */
 	private static class Registrar extends User {
 		/**
 		 * Create a registrar user with the user id and password in the
