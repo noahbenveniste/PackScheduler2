@@ -73,11 +73,11 @@ public class Course extends Activity implements Comparable<Course> {
 	private void setName(String name) {
 		//First, check that the input isn't null
 		if (name == null) {
-	        throw new IllegalArgumentException();
+	        throw new IllegalArgumentException("Invalid course name");
 	    }
 		//Next, check that the input is of the correct length
 	    if (name.length() < 4 || name.length() > 6) {
-	        throw new IllegalArgumentException();
+	        throw new IllegalArgumentException("Invalid course name");
 	    }
 		this.name = name;
 	}
@@ -97,18 +97,18 @@ public class Course extends Activity implements Comparable<Course> {
 	public void setSection(String section) {
 		//Check that the input isn't null
 		if (section == null) {
-		    throw new IllegalArgumentException();	
+		    throw new IllegalArgumentException("Invalid section number");	
 		}
 		//Check that the input is 3 characters long
 		if (section.length() != 3 ) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid section number");
 		}
 		//Check that all characters are digits
 		for (int i = 0; i < section.length(); i++) {
 			//Loop through the length of the string. If any char
 			//is not a digit, an exception is thrown
 			if (!Character.isDigit(section.charAt(i))) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid section number");
 			}
 		}
 		this.section = section;
@@ -131,7 +131,7 @@ public class Course extends Activity implements Comparable<Course> {
 		//Check that the input is not less than 1 or greater
 		//than 5
 		if (credits < 1 || credits > 5) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("");
 		}
 		this.credits = credits;
 	}
@@ -151,7 +151,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public void setInstructorId(String instructorId) {
 		//Check that the input isn't null or an empty string
 		if (instructorId == null || instructorId.equals("")) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid instructor unity id");
 		}
 		this.instructorId = instructorId;
 	}
@@ -167,7 +167,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public void setMeetingDays(String meetingDays) {
 		//Check that the input isn't null or an empty string
 		if (meetingDays == null || meetingDays.equals("")) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid meeting days");
 		}
 		
 		//Check for invalid characters
@@ -175,12 +175,12 @@ public class Course extends Activity implements Comparable<Course> {
 			if (meetingDays.charAt(i) != 'M' && meetingDays.charAt(i) != 'T' && 
 					meetingDays.charAt(i) != 'W' && meetingDays.charAt(i) != 'H' && 
 					meetingDays.charAt(i) != 'F' && meetingDays.charAt(i) != 'A') {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid meeting days");
 			}
 			//Check that if the string is greater than 1 char, it doesn't
 			//contain 'A'
 			if (meetingDays.charAt(i) == 'A' && meetingDays.length() > 1) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid meeting days");
 			}
 		}
 		

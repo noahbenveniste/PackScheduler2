@@ -45,7 +45,7 @@ public abstract class Activity implements Conflict {
 	public void setTitle(String title) {
 		//Check that the input isn't null or an empty string
 		if (title == null || title.equals("")) {
-	        throw new IllegalArgumentException();
+	        throw new IllegalArgumentException("Invalid course title");
 	    }
 		this.title = title;
 	}
@@ -77,23 +77,23 @@ public abstract class Activity implements Conflict {
 	public void setActivityTime(int startTime, int endTime) {
 		//Check that if meetingDays is "A", startTime and endTime are both zero
 		if (this.getMeetingDays().equals("A") && (startTime != 0 && endTime != 0)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 		}
 		//Check that the times are valid
 		if (startTime < 0 || startTime > 2359) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 	    //Check that the minutes are between 0 and 59
 		} else if ((startTime % 100) < 0 || (startTime % 100) > 59) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 		}
 		if (endTime < 0 || endTime > 2359) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 		} else if ((endTime % 100) < 0 || (endTime % 100) > 59) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 		}
 		//Check that the startTime is less than the endTime
 		if (startTime > endTime) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid course times");
 		}
 		//If all preconditions are met, set the fields with the input values
 		this.startTime = startTime;
