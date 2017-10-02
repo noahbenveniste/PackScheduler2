@@ -38,6 +38,7 @@ public class RegistrationManager {
 		this.courseCatalog = new CourseCatalog();
 		this.studentDirectory = new StudentDirectory();
 		this.loggedIn = false;
+		this.currentUser = null;
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class RegistrationManager {
 	 * 
 	 */
 	public void logout() {
-		currentUser = registrar;
+		currentUser = null;
 		this.loggedIn = false;
 	}
 

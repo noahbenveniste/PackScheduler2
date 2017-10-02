@@ -126,9 +126,9 @@ public class RegistrationManagerTest {
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Could not load registrar.properties");
 		}
-		//Test that logging out sets the current user to the registrar
+		//Test that logging out sets the current user to null
 		manager.logout();
-		assertEquals(registrarID, manager.getCurrentUser().getId());
+		assertNull(manager.getCurrentUser());
 	}
 
 	@Test
@@ -161,9 +161,9 @@ public class RegistrationManagerTest {
 		manager.login(studentUser.getId(),"pw");
 		assertTrue(manager.getCurrentUser().getId().equals(studentUser.getId()));
 		
-		//Test that logging out the student sets the current user back to registrar
+		//Test that logging out the student sets the current user back to null
 		manager.logout();
-		assertTrue(manager.getCurrentUser().getId().equals(registrarID));
+		assertNull(manager.getCurrentUser());
 		}
 
 }
