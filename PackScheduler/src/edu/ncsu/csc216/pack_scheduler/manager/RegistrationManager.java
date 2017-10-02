@@ -137,7 +137,7 @@ public class RegistrationManager {
 				throw new IllegalArgumentException();
 			}
 		}
-		throw new IllegalArgumentException("User doesn't exist");
+		throw new IllegalArgumentException("User doesn't exist.");
 	}
 
 	/**
