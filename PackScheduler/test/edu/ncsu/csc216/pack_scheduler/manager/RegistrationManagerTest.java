@@ -69,8 +69,10 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testLogin() {
+		manager.clearData();
 		//Load in the student directory from a file
-		manager.getStudentDirectory().loadStudentsFromFile("test-files/student_records.txt");
+		manager.getStudentDirectory().loadStudentsFromFile("test-files/single_student_directory_test.txt");
+		assertEquals(1,manager.getStudentDirectory().getStudentDirectory().length);
 		
 		//Set up the properties object for parsing registrar.properties
 		Properties prop = new Properties();
@@ -94,8 +96,14 @@ public class RegistrationManagerTest {
 		//Test invalid login for registrar
 		assertFalse(manager.login(registrarID, "wrongpassword"));
 		
-		Student studentUser = manager.getStudentDirectory().getStudentById("daustin");
-		assertTrue(manager.login(studentUser.getId(), studentUser.getPassword()));
+		Student studentUser = manager.getStudentDirectory().getStudentById("nnbenven");
+		
+		//Test invalid login for student user
+		assertFalse(manager.login(studentUser.getId(), "Password"));
+		
+		//Test valid login for student user
+		assertTrue(manager.login("nnbenven", "pw"));
+		
 		
 	}
 
@@ -123,7 +131,34 @@ public class RegistrationManagerTest {
 
 	@Test
 	public void testGetCurrentUser() {
-		fail("Not yet implemented");
+		//Set up the properties object for parsing registrar.properties
+		Properties prop = new Properties();
+		String registrarPW;
+		String registrarID;
+		//Get the password and id from registrar.properties
+		try (InputStream input = new FileInputStream("registrar.properties")) {
+			prop.load(input);
+
+			registrarPW = prop.getProperty("pw");
+			registrarID = prop.getProperty("id");
+
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Could not load registrar.properties");
+		}
+		//Test that logging in the registrar sets them to the current user
+		manager.login(registrarID, registrarPW);
+		assertTrue(manager.getCurrentUser().getId().equals(registrarID));
+		manager.logout();
+		
+		//Load in the student directory from a file
+		manager.getStudentDirectory().loadStudentsFromFile("test-files/single_student_directory_test.txt");
+		assertEquals(1,manager.getStudentDirectory().getStudentDirectory().length);
+		Student studentUser = manager.getStudentDirectory().getStudentById("nnbenven");
+		
+		//Test that logging in a student sets them to the current user
+		manager.login(studentUser.getId(),"pw");
+		assertTrue(manager.getCurrentUser().getId().equals(studentUser.getId()));
+		
 	}
 
 }
