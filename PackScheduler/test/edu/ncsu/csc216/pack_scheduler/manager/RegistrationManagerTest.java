@@ -159,6 +159,9 @@ public class RegistrationManagerTest {
 		manager.login(studentUser.getId(),"pw");
 		assertTrue(manager.getCurrentUser().getId().equals(studentUser.getId()));
 		
-	}
+		//Test that logging out the student sets the current user back to registrar
+		manager.logout();
+		assertTrue(manager.getCurrentUser().getId().equals(registrarID));
+		}
 
 }

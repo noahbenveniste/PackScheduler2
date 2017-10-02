@@ -115,6 +115,8 @@ public class RegistrationManager {
 				if (s.getPassword().equals(localHashPW)) {
 					currentUser = s;
 					return true;
+				} else {
+					return false;
 				}
 			} catch (NoSuchAlgorithmException e) {
 				throw new IllegalArgumentException();
@@ -128,12 +130,14 @@ public class RegistrationManager {
 				if (registrar.getPassword().equals(localHashPW)) {
 					currentUser = registrar;
 					return true;
+				} else {
+					return false;
 				}
 			} catch (NoSuchAlgorithmException e) {
 				throw new IllegalArgumentException();
 			}
 		}
-	return false;
+		throw new IllegalArgumentException("User doesn't exist");
 	}
 
 	/**
