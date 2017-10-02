@@ -96,6 +96,8 @@ public class RegistrationManagerTest {
 		//Test invalid login for registrar
 		assertFalse(manager.login(registrarID, "wrongpassword"));
 		
+		manager.logout();
+		
 		Student studentUser = manager.getStudentDirectory().getStudentById("nnbenven");
 		
 		//Test invalid login for student user

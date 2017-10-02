@@ -25,6 +25,7 @@ public class RegistrationManager {
 	private StudentDirectory studentDirectory;
 	private User registrar;
 	private User currentUser;
+	private boolean loggedIn;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	private static final String PROP_FILE = "registrar.properties";
@@ -36,6 +37,7 @@ public class RegistrationManager {
 		createRegistrar();
 		this.courseCatalog = new CourseCatalog();
 		this.studentDirectory = new StudentDirectory();
+		this.loggedIn = false;
 	}
 
 	/**
@@ -105,39 +107,45 @@ public class RegistrationManager {
 	 * @return
 	 */
 	public boolean login(String id, String password) {
-		Student s = studentDirectory.getStudentById(id);
-		if (s != null) {
-			MessageDigest digest;
-			try {
-				digest = MessageDigest.getInstance(HASH_ALGORITHM);
-				digest.update(password.getBytes());
-				String localHashPW = new String(digest.digest());
-				if (s.getPassword().equals(localHashPW)) {
-					currentUser = s;
-					return true;
-				} else {
-					return false;
+		if (!loggedIn) {
+			Student s = studentDirectory.getStudentById(id);
+			if (s != null) {
+				MessageDigest digest;
+				try {
+					digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (s.getPassword().equals(localHashPW)) {
+						currentUser = s;
+						this.loggedIn = true;
+						return true;
+					} else {
+						return false;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
 				}
-			} catch (NoSuchAlgorithmException e) {
-				throw new IllegalArgumentException();
-			}
-		} else if (registrar.getId().equals(id)) {
-			MessageDigest digest;
-			try {
-				digest = MessageDigest.getInstance(HASH_ALGORITHM);
-				digest.update(password.getBytes());
-				String localHashPW = new String(digest.digest());
-				if (registrar.getPassword().equals(localHashPW)) {
-					currentUser = registrar;
-					return true;
-				} else {
-					return false;
+			} else if (registrar.getId().equals(id)) {
+				MessageDigest digest;
+				try {
+					digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (registrar.getPassword().equals(localHashPW)) {
+						currentUser = registrar;
+						this.loggedIn = true;
+						return true;
+					} else {
+						return false;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
 				}
-			} catch (NoSuchAlgorithmException e) {
-				throw new IllegalArgumentException();
 			}
+			throw new IllegalArgumentException("User doesn't exist.");
+		} else {
+			return false;
 		}
-		throw new IllegalArgumentException("User doesn't exist.");
 	}
 
 	/**
@@ -145,6 +153,7 @@ public class RegistrationManager {
 	 */
 	public void logout() {
 		currentUser = registrar;
+		this.loggedIn = false;
 	}
 
 	/**
