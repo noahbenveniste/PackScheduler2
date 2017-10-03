@@ -13,7 +13,10 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
- * 
+ * RegistrationManager represents a manager that keeps track of its own instance and
+ * has the responsibilities related to getting the single instance,
+ * the courseCatalog, studentDirectory, and user authentication. 
+ * Also contains the Registrar inner class.
  * @author Noah Benveniste
  * @author Kevin Hildner
  * @author Kristina Fialo
@@ -31,7 +34,7 @@ public class RegistrationManager {
 	private static final String PROP_FILE = "registrar.properties";
 
 	/**
-	 * 
+	 * Constructor for RegistrationManager.
 	 */
 	private RegistrationManager() {
 		createRegistrar();
@@ -42,7 +45,10 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
+	 * Reads from the Properties file to get the value associated with password, 
+	 * then hashes the password. Then gets the rest of the properties as parameters for 
+	 * the Registrar constructor.
+	 * @throws IllegalArgumentException if there is no local copy of the specified file.
 	 */
 	private void createRegistrar() {
 		Properties prop = new Properties();
@@ -60,9 +66,9 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
-	 * @param pw
-	 * @return
+	 * Hashes the User's password.
+	 * @param pw password of the User
+	 * @throws IllegalArgumentException if the password cannot be hashed.
 	 */
 	private String hashPW(String pw) {
 		try {
@@ -75,8 +81,8 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Creates the single instance of RegistrationManager if one doesn't already exist.
+	 * @return the RegistrationManager instance if it exists
 	 */
 	public static RegistrationManager getInstance() {
 		if (instance == null) {
@@ -86,26 +92,30 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the course catalog.
+	 * @return the courseCatalog
 	 */
 	public CourseCatalog getCourseCatalog() {
 		return courseCatalog;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Gets the student directory.
+	 * @return the studentDirectory
 	 */
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
 	}
 
 	/**
-	 * 
-	 * @param id
-	 * @param password
-	 * @return
+	 * Logs in a user with their id and password. The user can log in if
+	 * their id and hashed password matches the user's stored id and password.
+	 * @param id of the User logging in
+	 * @param password of the User logging in
+	 * @return true if the user can log in, false otherwise
+	 * @throws IllegalArgumentException if the user doesn't exist, the user's
+	 *     hashed password doesn't matched the stored hashed password, or if a user
+	 *     is already logged in. 
 	 */
 	public boolean login(String id, String password) {
 		if (!loggedIn) {
@@ -150,7 +160,7 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
+	 * Logs a User out of the system.
 	 */
 	public void logout() {
 		currentUser = null;
@@ -166,7 +176,7 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
+	 * Clears data in the courseCatalog and the studentDirectory.
 	 */
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
@@ -174,15 +184,21 @@ public class RegistrationManager {
 	}
 
 	/**
-	 * 
+	 * Inner class of RegistrationManager that represents a generic Registrar User.
+	 * The Registrar works with the studentDirectory and courseCatalog.
 	 * @author Noah Benveniste
 	 * @author Kevin Hildner
 	 * @author Kristina Fialo
 	 */
 	private static class Registrar extends User {
 		/**
-		 * Create a registrar user with the user id and password in the
+		 * Create a Registrar user with the user id and password in the
 		 * registrar.properties file.
+		 * @param firstName of the Registrar user
+		 * @param lastName of the Registrar user
+		 * @param id of the Registrar user
+		 * @param email of the Registrar user
+		 * @param hashPW hashed password of the Registrar user
 		 */
 		public Registrar(String firstName, String lastName, String id, String email, String hashPW) {
 			super(firstName, lastName, id, email, hashPW);

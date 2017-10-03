@@ -14,7 +14,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 
 /**
- * 
+ * Tests the RegistrationManager class.
  * @author Noah Benveniste
  * @author Kevin Hildner
  * @author Kristina Fialo
@@ -34,7 +34,7 @@ public class RegistrationManagerTest {
 	}
 
 	/**
-	 * Tests getting courseCatalog from the RegistrationManager
+	 * Tests getting courseCatalog from the RegistrationManager.
 	 */
 	@Test
 	public void testGetCourseCatalog() {
@@ -50,7 +50,7 @@ public class RegistrationManagerTest {
 	}
 
 	/**
-	 * Tests getting studentRecords from the RegistrationManager
+	 * Tests getting studentRecords from the RegistrationManager.
 	 */
 	@Test
 	public void testGetStudentDirectory() {
@@ -65,7 +65,7 @@ public class RegistrationManagerTest {
 	}
 
 	/**
-	 * Tests the login() method by getting information from a generic registrar.properties file
+	 * Tests the login() method by getting information from a generic registrar.properties file.
 	 */
 	@Test
 	public void testLogin() {
@@ -107,10 +107,16 @@ public class RegistrationManagerTest {
 		assertTrue(manager.login("nnbenven", "pw"));
 		
 		
+		//Test invalid login. Logging in another user when one is already logged in
+		manager.login("nnbenven", "pw");
+		
+		assertFalse(manager.login("efrost", "pw"));
+		
+		
 	}
 
 	/**
-	 * Tests the logout() method with a generic registar.properties file
+	 * Tests the logout() method with a generic registar.properties file.
 	 */
 	@Test
 	public void testLogout() {
@@ -131,6 +137,9 @@ public class RegistrationManagerTest {
 		assertNull(manager.getCurrentUser());
 	}
 
+	/**
+	 * Tests the getCurrentUser() method with registrar.properties file.
+	 */
 	@Test
 	public void testGetCurrentUser() {
 		//Set up the properties object for parsing registrar.properties
