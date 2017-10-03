@@ -93,6 +93,8 @@ public class RegistrationManagerTest {
 		//Test valid login for registrar
 		assertTrue(manager.login(registrarID, registrarPW));
 		
+		manager.logout();
+		
 		//Test invalid login for registrar
 		assertFalse(manager.login(registrarID, "wrongpassword"));
 		

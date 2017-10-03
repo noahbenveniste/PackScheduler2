@@ -155,7 +155,7 @@ public class RegistrationManager {
 			}
 			throw new IllegalArgumentException("User doesn't exist.");
 		} else {
-			return false;
+			throw new IllegalArgumentException("User already logged in.");
 		}
 	}
 
