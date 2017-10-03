@@ -112,6 +112,13 @@ public class RegistrationManagerTest {
 		
 		assertFalse(manager.login("efrost", "pw"));
 		
+		/** 
+		 try (manager.login("nnbenven", "pw")) {
+		     manager.login("efrost", "pw");
+		 } catch (IllegalArgumentException e) {
+		     throw new IllegalArgumentException("User already logged in");
+		 }
+		 */
 		
 	}
 
