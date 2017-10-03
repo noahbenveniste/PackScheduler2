@@ -106,20 +106,16 @@ public class RegistrationManagerTest {
 		//Test valid login for student user
 		assertTrue(manager.login("nnbenven", "pw"));
 		
+		manager.logout();
 		
 		//Test invalid login. Logging in another user when one is already logged in
-		manager.login("nnbenven", "pw");
-		
-		assertFalse(manager.login("efrost", "pw"));
-		
-		/** 
-		 try (manager.login("nnbenven", "pw")) {
-		     manager.login("efrost", "pw");
-		 } catch (IllegalArgumentException e) {
-		     throw new IllegalArgumentException("User already logged in");
-		 }
-		 */
-		
+		try {
+			manager.login("nnbenven", "pw");
+		    manager.login("efrost", "pw");
+		    fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(manager.getCurrentUser().getId().equals("nnbenven"));
+		}		
 	}
 
 	/**
