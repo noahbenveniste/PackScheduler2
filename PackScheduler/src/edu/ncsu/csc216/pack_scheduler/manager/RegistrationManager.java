@@ -112,10 +112,9 @@ public class RegistrationManager {
 	 * their id and hashed password matches the user's stored id and password.
 	 * @param id of the User logging in
 	 * @param password of the User logging in
-	 * @return true if the user can log in, false otherwise
-	 * @throws IllegalArgumentException if the user doesn't exist, the user's
-	 *     hashed password doesn't matched the stored hashed password, or if a user
-	 *     is already logged in. 
+	 * @return true if the user can log in, false otherwise 
+	 * (i.e. the input password is wrong or someone else is logged in)
+	 * @throws IllegalArgumentException if the user doesn't exist
 	 */
 	public boolean login(String id, String password) {
 		if (!loggedIn) {
@@ -155,7 +154,7 @@ public class RegistrationManager {
 			}
 			throw new IllegalArgumentException("User doesn't exist.");
 		} else {
-			throw new IllegalArgumentException("User already logged in.");
+			return false;
 		}
 	}
 
