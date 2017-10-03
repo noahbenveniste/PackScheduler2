@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+/**
+ * User is a super class of Student and Registrar
+ * @author Noah Benveniste
+ * @author Kevin Hildner
+ * @author Kristina Fialo
+ */
 public abstract class User {
 
 	/** The user's first name */
@@ -15,11 +21,11 @@ public abstract class User {
 
 	/**
 	 * Sets the fields for the User superclass
-	 * @param firstName
-	 * @param lastName
-	 * @param id
-	 * @param email
-	 * @param hashPW
+	 * @param firstName first name of the User
+	 * @param lastName last name of the User
+	 * @param id of the User
+	 * @param email of the User
+	 * @param hashPW hashed password of the User
 	 */
 	public User(String firstName, String lastName, String id, String email, String hashPW) {
 		this.setFirstName(firstName);

@@ -72,7 +72,7 @@ public class RegistrationManagerTest {
 		manager.clearData();
 		//Load in the student directory from a file
 		manager.getStudentDirectory().loadStudentsFromFile("test-files/single_student_directory_test.txt");
-		assertEquals(1,manager.getStudentDirectory().getStudentDirectory().length);
+		assertEquals(1, manager.getStudentDirectory().getStudentDirectory().length);
 		
 		//Set up the properties object for parsing registrar.properties
 		Properties prop = new Properties();
@@ -126,13 +126,13 @@ public class RegistrationManagerTest {
 	@Test
 	public void testLogout() {
 		Properties prop = new Properties();
-		String registrarID;
+		//String registrarID;
 		
 		//Get the password and id from registrar.properties
 		try (InputStream input = new FileInputStream("registrar.properties")) {
 			prop.load(input);
 
-			registrarID = prop.getProperty("id");
+			//registrarID = prop.getProperty("id");
 
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Could not load registrar.properties");
@@ -168,11 +168,11 @@ public class RegistrationManagerTest {
 		
 		//Load in the student directory from a file
 		manager.getStudentDirectory().loadStudentsFromFile("test-files/single_student_directory_test.txt");
-		assertEquals(1,manager.getStudentDirectory().getStudentDirectory().length);
+		assertEquals(1, manager.getStudentDirectory().getStudentDirectory().length);
 		Student studentUser = manager.getStudentDirectory().getStudentById("nnbenven");
 		
 		//Test that logging in a student sets them to the current user
-		manager.login(studentUser.getId(),"pw");
+		manager.login(studentUser.getId(), "pw");
 		assertTrue(manager.getCurrentUser().getId().equals(studentUser.getId()));
 		
 		//Test that logging out the student sets the current user back to null

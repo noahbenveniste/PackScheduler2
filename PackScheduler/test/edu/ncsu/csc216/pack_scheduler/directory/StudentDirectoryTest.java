@@ -254,7 +254,8 @@ public class StudentDirectoryTest {
 	public void testGetStudentById() {
 		// Create a student directory and add a student
 		StudentDirectory sd = new StudentDirectory();
-		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com","pw", "pw", 15);
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15); 
+
 		
 		// Create a student object identical to the one that was just added
 		Student s1 = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", 15);
