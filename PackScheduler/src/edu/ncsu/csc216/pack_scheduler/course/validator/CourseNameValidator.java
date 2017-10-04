@@ -8,7 +8,7 @@ package edu.ncsu.csc216.pack_scheduler.course.validator;
  */
 public class CourseNameValidator {
 
-	/** */
+	/** Keeps track of whether */
 	private boolean validEndState;
 	/** */
 	private int letterCount;
@@ -20,13 +20,8 @@ public class CourseNameValidator {
 	private final State numberState = new NumberState();
 	private final State suffixState = new SuffixState();
 	
-	private final String OTHER_MSG = "Course name can only contain letters and digits.";
-	
 	/** */
 	private State state;
-	
-	/** */
-	private String courseName;
 	
 	/**
 	 * 
@@ -39,9 +34,11 @@ public class CourseNameValidator {
 	}
 	
 	/**
-	 * 
-	 * @param courseName
-	 * @return
+	 * Checks that a course name contains 1-4 letters followed by 3 numbers and an optional
+	 * one letter suffix
+	 * @param courseName the course name to check for validity
+	 * @return true if the course name is valid, false otherwise
+	 * @throws InvalidTransitionException if the input contains a character that is not a letter or digit
 	 */
 	public boolean isValid(String courseName) throws InvalidTransitionException {
 		for (int i = 0; i < courseName.length(); i++) {
@@ -53,17 +50,18 @@ public class CourseNameValidator {
 				state.onOther();
 			}
 		}
-		if (this.digitCount == 3 && this.letterCount >= 1 && this.letterCount <= 4) {
-			return true;
-		} else {
-			return false;
+		if (state.equals(numberState)) {
+			this.validEndState = (digitCount == 3 && letterCount >= 1 && letterCount <= 4);
+		} else if (state.equals(suffixState)) {
+			this.validEndState = (digitCount == 3 && letterCount >= 2 && letterCount <= 5);
 		}
+		return this.validEndState;
 	}
 	
 	/**
-	 * 
-	 * @author Noah
-	 *
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 * @author Kristina Fialo
 	 */
 	private class InitialState extends State {
 	
@@ -81,22 +79,14 @@ public class CourseNameValidator {
 		 */
 		@Override
 		public void onDigit() throws InvalidTransitionException {
-			throw new InvalidTransitionException();
-		}
-	
-		/**
-		 * 
-		 */
-		@Override
-		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException(OTHER_MSG);	
+			throw new InvalidTransitionException("Course name must start with a letter.");
 		}
 	}
 
 	/**
-	 * 
-	 * @author Noah
-	 *
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 * @author Kristina Fialo
 	 */
 	private class LetterState extends State {
 
@@ -104,9 +94,13 @@ public class CourseNameValidator {
 		 * 
 		 */
 		@Override
-		public void onLetter() {
-			CourseNameValidator.this.state = letterState;
-			CourseNameValidator.this.letterCount++;
+		public void onLetter() throws InvalidTransitionException {
+			if (CourseNameValidator.this.letterCount > 4) {
+				throw new InvalidTransitionException("Course name cannot start with more than 4 letters.");
+			} else {
+				CourseNameValidator.this.state = letterState;
+				CourseNameValidator.this.letterCount++;
+			}
 		}
 
 		/**
@@ -117,21 +111,12 @@ public class CourseNameValidator {
 			CourseNameValidator.this.state = numberState;
 			CourseNameValidator.this.digitCount++;
 		}
-
-		/**
-		 * 
-		 */
-		@Override
-		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException(OTHER_MSG);	
-		}
-		
 	}
 	
 	/**
-	 * 
-	 * @author Noah
-	 *
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 * @author Kristina Fialo
 	 */
 	private class NumberState extends State {
 	
@@ -139,32 +124,33 @@ public class CourseNameValidator {
 		 * 
 		 */
 		@Override
-		public void onLetter() {
-			CourseNameValidator.this.state = suffixState;
+		public void onLetter() throws InvalidTransitionException {
+			if (CourseNameValidator.this.digitCount == 3) {
+				CourseNameValidator.this.state = suffixState;
+				CourseNameValidator.this.letterCount++;
+			} else {
+				throw new InvalidTransitionException("Course name must have 3 digits.");
+			}
 		}
 	
 		/**
 		 * 
 		 */
 		@Override
-		public void onDigit() {
-			CourseNameValidator.this.state = numberState;
-			CourseNameValidator.this.digitCount++;
-		}
-	
-		/**
-		 * 
-		 */
-		@Override
-		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException(OTHER_MSG);	
+		public void onDigit() throws InvalidTransitionException {
+			if (CourseNameValidator.this.digitCount == 3) {
+				throw new InvalidTransitionException("Course name can only have 3 digits.");
+			} else {
+				CourseNameValidator.this.state = numberState;
+				CourseNameValidator.this.digitCount++;
+			}
 		}
 	}
 
 	/**
-	 * 
-	 * @author Noah
-	 *
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 * @author Kristina Fialo
 	 */
 	private class SuffixState extends State {
 
@@ -172,8 +158,8 @@ public class CourseNameValidator {
 		 * 
 		 */
 		@Override
-		public void onLetter() throws InvalidTransitionException{
-			throw new InvalidTransitionException();
+		public void onLetter() throws InvalidTransitionException {
+			throw new InvalidTransitionException("Course name can only have a 1 letter suffix.");
 		}
 
 		/**
@@ -181,16 +167,7 @@ public class CourseNameValidator {
 		 */
 		@Override
 		public void onDigit() throws InvalidTransitionException {
-			throw new InvalidTransitionException();
-		}
-
-		/**
-		 * 
-		 */
-		@Override
-		public void onOther() throws InvalidTransitionException {
-			throw new InvalidTransitionException(OTHER_MSG);	
-			
+			throw new InvalidTransitionException("Course name cannot contain digits after the suffix.");
 		}
 	}
 }
