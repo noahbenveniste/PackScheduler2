@@ -6,7 +6,7 @@ package edu.ncsu.csc216.pack_scheduler.course.validator;
  * @author Kristina Fialo
  *
  */
-public class CourseNameValidatorFSM {
+public class CourseNameValidator {
 
 	/** */
 	private boolean validEndState;
@@ -31,7 +31,7 @@ public class CourseNameValidatorFSM {
 	/**
 	 * 
 	 */
-	public CourseNameValidatorFSM() {
+	public CourseNameValidator() {
 		this.validEndState = false;
 		this.letterCount = 0;
 		this.digitCount = 0;
@@ -68,7 +68,7 @@ public class CourseNameValidatorFSM {
 		 */
 		@Override
 		public void onLetter() {
-			CourseNameValidatorFSM.this.state = letterState;
+			CourseNameValidator.this.state = letterState;
 		}
 	
 		/**
@@ -100,7 +100,7 @@ public class CourseNameValidatorFSM {
 		 */
 		@Override
 		public void onLetter() {
-			CourseNameValidatorFSM.this.state = letterState;
+			CourseNameValidator.this.state = letterState;
 		}
 
 		/**
@@ -108,7 +108,7 @@ public class CourseNameValidatorFSM {
 		 */
 		@Override
 		public void onDigit() {
-			CourseNameValidatorFSM.this.state = numberState;
+			CourseNameValidator.this.state = numberState;
 		}
 
 		/**
@@ -133,7 +133,7 @@ public class CourseNameValidatorFSM {
 		 */
 		@Override
 		public void onLetter() {
-			CourseNameValidatorFSM.this.state = suffixState;
+			CourseNameValidator.this.state = suffixState;
 		}
 	
 		/**
@@ -141,7 +141,7 @@ public class CourseNameValidatorFSM {
 		 */
 		@Override
 		public void onDigit() {
-			CourseNameValidatorFSM.this.state = numberState;
+			CourseNameValidator.this.state = numberState;
 		}
 	
 		/**
