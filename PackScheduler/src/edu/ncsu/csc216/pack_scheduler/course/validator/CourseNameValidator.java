@@ -41,6 +41,12 @@ public class CourseNameValidator {
 	 * @throws InvalidTransitionException if the input contains a character that is not a letter or digit
 	 */
 	public boolean isValid(String courseName) throws InvalidTransitionException {
+		//Reset instance variables in case this object is being reused for a different input
+		this.validEndState = false;
+		this.letterCount = 0;
+		this.digitCount = 0;
+		this.state = initialState;
+		
 		for (int i = 0; i < courseName.length(); i++) {
 			if (Character.isLetter(courseName.charAt(i))) {
 				state.onLetter();
