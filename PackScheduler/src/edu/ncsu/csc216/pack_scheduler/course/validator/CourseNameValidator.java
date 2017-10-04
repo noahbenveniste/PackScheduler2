@@ -53,7 +53,11 @@ public class CourseNameValidator {
 				state.onOther();
 			}
 		}
-		return false;
+		if (this.digitCount == 3 && this.letterCount >= 1 && this.letterCount <= 4) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -69,6 +73,7 @@ public class CourseNameValidator {
 		@Override
 		public void onLetter() {
 			CourseNameValidator.this.state = letterState;
+			CourseNameValidator.this.letterCount++;
 		}
 	
 		/**
@@ -101,6 +106,7 @@ public class CourseNameValidator {
 		@Override
 		public void onLetter() {
 			CourseNameValidator.this.state = letterState;
+			CourseNameValidator.this.letterCount++;
 		}
 
 		/**
@@ -109,6 +115,7 @@ public class CourseNameValidator {
 		@Override
 		public void onDigit() {
 			CourseNameValidator.this.state = numberState;
+			CourseNameValidator.this.digitCount++;
 		}
 
 		/**
@@ -142,6 +149,7 @@ public class CourseNameValidator {
 		@Override
 		public void onDigit() {
 			CourseNameValidator.this.state = numberState;
+			CourseNameValidator.this.digitCount++;
 		}
 	
 		/**
