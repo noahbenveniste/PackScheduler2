@@ -134,7 +134,6 @@ public class CourseNameValidatorFSMTest {
 		} catch (InvalidTransitionException e) {
 			assertEquals(e.getMessage(), "Course name can only contain letters and digits.");
 		}
-
 	}
 
 	/**
@@ -199,7 +198,6 @@ public class CourseNameValidatorFSMTest {
 		} catch (InvalidTransitionException e) {
 			assertEquals(e.getMessage(), "Course name can only contain letters and digits.");
 		}
-
 	}
 
 	/**
@@ -233,7 +231,6 @@ public class CourseNameValidatorFSMTest {
 		} catch (InvalidTransitionException e) {
 			assertEquals(e.getMessage(), "Course name can only contain letters and digits.");
 		}
-
 	}
 
 	/**
@@ -383,6 +380,15 @@ public class CourseNameValidatorFSMTest {
 			fail();
 		} catch(InvalidTransitionException e) {
 			assertEquals(e.getMessage(), "Course name cannot contain digits after the suffix.");
+		}
+		
+		//Test an invalid course name with a suffix followed by an invalid character
+		try {
+			fsm.isValid(INVALID_COURSE_NAME_16);
+			fail();
+		} catch (InvalidTransitionException e) {
+			assertEquals(e.getMessage(), "Course name can only contain letters and digits.");
+			
 		}
 	}
 }
