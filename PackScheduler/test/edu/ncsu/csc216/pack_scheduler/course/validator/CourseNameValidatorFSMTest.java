@@ -69,7 +69,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from initialState to stateL and stateD
 	 */
 	@Test
-	public void TestInitialStateTransitions() {
+	public void initialStateTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -108,7 +108,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateL to stateLL and stateD
 	 */
 	@Test
-	public void TestStateLTransitions() {
+	public void stateLTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -140,7 +140,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateLL to stateLLL and stateD
 	 */
 	@Test
-	public void TestStateLLTransitions() {
+	public void stateLLTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -172,7 +172,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateLLL to stateLLLL and stateD
 	 */
 	@Test
-	public void TestStateLLLTransitions() {
+	public void stateLLLTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -204,7 +204,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateLLLL to stateD
 	 */
 	@Test
-	public void TestStateLLLLTransitions() {
+	public void stateLLLLTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -237,7 +237,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateD to stateDD
 	 */
 	@Test
-	public void TestStateDTransitions() {
+	public void stateDTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -277,7 +277,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateDD to stateDDD
 	 */
 	@Test
-	public void TestStateDDTransitions() {
+	public void stateDDTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -316,7 +316,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateDDD to stateSuffix
 	 */
 	@Test
-	public void TestStateDDDTransitions() {
+	public void stateDDDTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
@@ -355,7 +355,7 @@ public class CourseNameValidatorFSMTest {
 	 * Tests the transitions from stateSuffix
 	 */
 	@Test
-	public void TestStateSuffixTransitions() {
+	public void stateSuffixTransitionsTest() {
 		// Construct a CourseNameValidatorFSM to be used throughout the tests
 		CourseNameValidatorFSM fsm = new CourseNameValidatorFSM();
 
