@@ -134,7 +134,7 @@ public class CourseNameValidator {
 		 */
 		@Override
 		public void onLetter() throws InvalidTransitionException {
-			if (CourseNameValidator.this.letterCount > 4) {
+			if (CourseNameValidator.this.letterCount >= 4) {
 				throw new InvalidTransitionException("Course name cannot start with more than 4 letters.");
 			} else {
 				CourseNameValidator.this.state = letterState;

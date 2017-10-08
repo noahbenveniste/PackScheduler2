@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Object class that represents a course
  * @author Noah Benveniste
@@ -17,6 +20,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** Course's instructor */
 	private String instructorId;
+	/** Used for checking the validity of course names */
+	private CourseNameValidator validator;
 	
 	
 	/** Constructors */
@@ -35,6 +40,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
 			int startTime, int endTime) {
 		super(title, meetingDays, startTime, endTime);
+		this.validator = new CourseNameValidator();
 		setName(name);
 	    setSection(section);
 	    setCredits(credits);
@@ -79,6 +85,16 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < 4 || name.length() > 6) {
 	        throw new IllegalArgumentException("Invalid course name");
 	    }
+	    //Next, use the CourseNameValidator to check that the course name is valid
+	    boolean valid;
+	    try {
+	    	valid = validator.isValid(name);
+	    } catch (InvalidTransitionException e) { //Throw an IAE if the method throws an InvalidTransitionException
+	    	throw new IllegalArgumentException("Invalid course name");
+	    }
+	    if (!valid) { //Throw an IAE if the method returns false
+    		throw new IllegalArgumentException("Invalid course name");
+    	}
 		this.name = name;
 	}
 	
