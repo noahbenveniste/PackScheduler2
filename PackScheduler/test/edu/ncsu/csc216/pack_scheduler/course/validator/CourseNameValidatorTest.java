@@ -326,6 +326,13 @@ public class CourseNameValidatorTest {
 			fail();
 		}
 		
+		try {
+			assertTrue(fsm.isValid("CSC216"));
+		} catch(InvalidTransitionException e) {
+			fail();
+		}
+		
+		
 		// Test a valid course name that ends with a suffix, transition to stateSuffix
 		try {
 			assertTrue(fsm.isValid(VALID_COURSE_NAME_L4_S));
