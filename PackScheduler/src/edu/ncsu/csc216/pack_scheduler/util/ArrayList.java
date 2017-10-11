@@ -78,7 +78,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		//Cast to generic type
 		E[] temp = (E[]) o;
 		//Assign the elements from the old array to the same index in the new array
-		for (int i = 0; i < this.capacity; i++) {
+		for (int i = 0; i < this.size() - 1; i++) {
 			temp[i] = this.list[i];
 		}
 		//Assign the new array to the list field
