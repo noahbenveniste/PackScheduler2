@@ -36,6 +36,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	 * @throws IndexOutOfBoundsException if the index is less than zero or greater than the ArrayList's size
 	 * @throws IllegalArgumentException if the added element is a duplicate of an element already in the list
 	 */
+	@Override
 	public void add(int idx, E element) {
 		if (element == null) {
 			throw new NullPointerException();
