@@ -39,14 +39,14 @@ public class ArrayList<E> extends AbstractList<E> {
 	@Override
 	public void add(int idx, E element) {
 		if (element == null) {
-			throw new NullPointerException();
+			throw new NullPointerException("Cannot add null elements");
 		}
 		if (idx < 0 || idx > this.size()) {
 			throw new IndexOutOfBoundsException();
 		}
 		for (int i = 0; i < this.size(); i++) {
 			if (this.list[i].equals(element)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Cannot add repeat elements");
 			}
 		}
 		if (this.size() == this.capacity) { //Grow the array if list is full
