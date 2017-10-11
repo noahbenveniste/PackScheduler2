@@ -52,6 +52,8 @@ public class CourseNameValidatorTest {
 	public static final String INVALID_COURSE_NAME_15 = "ABC123!";
 	/** Invalid course name due to an invalid character following the suffix */
 	public static final String INVALID_COURSE_NAME_16 = "ABC123A!";
+	/** Invalid course name due to a letter following the first digit */
+	public static final String INVALID_COURSE_NAME_17 = "AB1A2";
 
 	/** Invalid course name due to being an empty string */
 	public static final String EMPTY_COURSE_NAME = "";
@@ -163,6 +165,14 @@ public class CourseNameValidatorTest {
 			fail();
 		} catch (InvalidTransitionException e) {
 			assertEquals(e.getMessage(), "Course name can only contain letters and digits.");
+		}
+		
+		// Test transitioning from a digit to a letter that occurs before the suffix
+		try {
+			fsm.isValid(INVALID_COURSE_NAME_17);
+			fail();
+		} catch (InvalidTransitionException e) {
+			assertEquals(e.getMessage(), "Course name must have 3 digits.");
 		}
 	}
 }
