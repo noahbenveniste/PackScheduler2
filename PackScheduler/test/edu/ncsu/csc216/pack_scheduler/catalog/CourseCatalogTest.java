@@ -79,7 +79,6 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Tests adding a course to a catalog
-	 * @kwhildne
 	 */
 	@Test
 	public void testAddCourseToCatalog() {
