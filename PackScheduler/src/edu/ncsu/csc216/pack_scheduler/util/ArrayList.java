@@ -42,7 +42,7 @@ public class ArrayList<E> extends AbstractList<E> {
 			throw new NullPointerException("Cannot add null elements");
 		}
 		if (idx < 0 || idx > this.size()) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Index is outside the accepatble range");
 		}
 		for (int i = 0; i < this.size(); i++) {
 			if (this.list[i].equals(element)) {
@@ -94,11 +94,11 @@ public class ArrayList<E> extends AbstractList<E> {
 	 */
 	public E remove(int idx) {
 		if (idx < 0 || idx >= this.size()) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Index is outside the accepatble range");
 		}
 		//Get the element at the specified index
 		E temp = list[idx];
-		for (int i = idx; i < this.size() - 2; i++) {
+		for (int i = idx; i < this.size() - 1; i++) {
 			list[i] = list[i + 1];
 		}
 		//Set the repeated element at the end of the list to null
