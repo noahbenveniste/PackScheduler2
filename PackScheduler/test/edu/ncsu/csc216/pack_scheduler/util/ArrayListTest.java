@@ -133,34 +133,165 @@ public class ArrayListTest {
 			assertEquals("Index is outside the accepatble range", e.getMessage());
 		}
 		// Test adding to an index above the boundary
-		
 	}
 
 	/**
-	 * Test method for
-	 * {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#remove(int)}.
+	 * Test method for remove()
 	 */
 	@Test
 	public void testRemoveInt() {
-		fail("Not yet implemented");
+		// Create the initial array
+		ArrayList<String> list = new ArrayList<String>();
+		// Check that initial size is zero
+		assertEquals(0, list.size());
+		// Add 7 elements
+		list.add(0, "a");
+		list.add(1, "b");
+		list.add(2, "c");
+		list.add(3, "d");
+		list.add(4, "e");
+		list.add(5, "f");
+		list.add(6, "g");
+		//Try removing an element from an index less than 0
+		try {
+			list.remove(-1);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the accepatble range", e.getMessage());
+		}
+		//Try removing an element from an index greater than or equal to the ArrayList's size
+		try {
+			list.remove(7);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the accepatble range", e.getMessage());
+		}
+		//Remove an element at the front of the list
+		list.remove(0);
+		assertEquals(6, list.size());
+		assertEquals("b", list.get(0));
+		assertEquals("c", list.get(1));
+		assertEquals("d", list.get(2));
+		assertEquals("e", list.get(3));
+		assertEquals("f", list.get(4));
+		assertEquals("g", list.get(5));
+		//Remove an element at the end of the list
+		list.remove(5);
+		assertEquals(5, list.size());
+		assertEquals("b", list.get(0));
+		assertEquals("c", list.get(1));
+		assertEquals("d", list.get(2));
+		assertEquals("e", list.get(3));
+		assertEquals("f", list.get(4));
+		//Remove an element from the middle of the list
+		list.remove(2);
+		assertEquals(4, list.size());
+		assertEquals("b", list.get(0));
+		assertEquals("c", list.get(1));
+		assertEquals("e", list.get(2));
+		assertEquals("f", list.get(3));
 	}
 
 	/**
-	 * Test method for
-	 * {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#get(int)}.
+	 * Test method for get()
 	 */
 	@Test
 	public void testGetInt() {
-		fail("Not yet implemented");
+		// Create the initial array
+		ArrayList<String> list = new ArrayList<String>();
+		// Check that initial size is zero
+		assertEquals(0, list.size());
+		// Add 5 elements
+		list.add(0, "a");
+		list.add(1, "b");
+		list.add(2, "c");
+		list.add(3, "d");
+		list.add(4, "e");
+		//Try getting a value at an index less than zero
+		String s = null;
+		try {
+			s = list.get(-1);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range", e.getMessage());
+			assertNull(s);
+		}
+		//Try getting a value at an index outside the size of the array
+		try {
+			s = list.get(5);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range", e.getMessage());
+			assertNull(s);
+		}
+		//Get a value from the front of the array
+		s = list.get(0);
+		assertEquals(s, "a");
+		//Get a value from the back of the array
+		s = list.get(4);
+		assertEquals(s, "e");
+		//Get a value from the middle of the array
+		s = list.get(2);
+		assertEquals(s, "c");
 	}
 
 	/**
-	 * Test method for
-	 * {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#set(int, java.lang.Object)}.
+	 * Test method for set()
 	 */
 	@Test
 	public void testSetIntE() {
-		fail("Not yet implemented");
+		// Create the initial array
+		ArrayList<String> list = new ArrayList<String>();
+		// Check that initial size is zero
+		assertEquals(0, list.size());
+		// Add 5 elements
+		list.add(0, "a");
+		list.add(1, "b");
+		list.add(2, "c");
+		list.add(3, "d");
+		list.add(4, "e");
+		//Try getting a value at an index less than zero
+		String s = null;
+		try {
+			s = list.set(-1, "z");
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range", e.getMessage());
+			assertNull(s);
+		}
+		//Try getting a value at an index outside the size of the array
+		try {
+			s = list.set(5, "z");
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range", e.getMessage());
+			assertNull(s);
+		}
+		//Try setting a null element
+		try {
+			list.set(0, null);
+		} catch (NullPointerException e) {
+			assertEquals("Cannot set null elements", e.getMessage());
+			assertNull(s);
+		}
+		//Try setting a duplicate element
+		try {
+			list.set(0, "a");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add duplicate elements", e.getMessage());
+			assertNull(s);
+		}
+		//Set a value at the front of the array
+		s = list.set(0, "z");
+		assertEquals(s, "a");
+		assertEquals("z", list.get(0));
+		//Set a value at the end of the array
+		s = list.set(4, "q");
+		assertEquals(s, "e");
+		assertEquals("q", list.get(4));
+		//Set a value in the middle of the array
+		s = list.set(2, "x");
+		assertEquals(s, "c");
+		assertEquals("x", list.get(2));
 	}
-
 }

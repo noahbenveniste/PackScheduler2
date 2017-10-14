@@ -118,14 +118,14 @@ public class ArrayList<E> extends AbstractList<E> {
 	 */
 	public E set(int idx, E element) {
 		if (element == null) {
-			throw new NullPointerException();
+			throw new NullPointerException("Cannot set null elements");
 		}
 		if (idx < 0 || idx >= this.size()) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Index is outside the acceptable range");
 		}
 		for (int i = 0; i < this.size(); i++) {
 			if (this.list[i].equals(element)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Cannot add duplicate elements");
 			}
 		}
 		E temp = list[idx];
@@ -141,7 +141,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	@Override
 	public E get(int idx) {
 		if (idx < 0 || idx >= this.size()) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Index is outside the acceptable range");
 		}
 		return this.list[idx];
 	}
