@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ncsu.csc216.pack_scheduler.user.schedule;
 
 import static org.junit.Assert.*;
@@ -8,8 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author Noah
- *
+ * Unit tests for Schedule
+ * @author Noah Benveniste
+ * @author Kevin Hildner
  */
 public class ScheduleTest {
 
