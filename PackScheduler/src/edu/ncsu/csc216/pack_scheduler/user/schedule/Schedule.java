@@ -79,6 +79,7 @@ public class Schedule {
 	 * @return the schedule's course information as a 2D array
 	 */
 	public String[][] getScheduledCourses() {
+		//TODO implement
 		return null;
 	}
 	
