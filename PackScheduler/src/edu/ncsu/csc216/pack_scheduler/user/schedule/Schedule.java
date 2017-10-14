@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.user.schedule;
 
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 
@@ -30,12 +31,23 @@ public class Schedule {
 	 * Adds a specified course to the end of the schedule
 	 * @param c the course to be added
 	 * @return true if the course was added successfully
-	 * @throws IllegalArgumentException if a duplicate course is passed
-	 * @throws IllegalArgumentException if the passed course conflicts with
-	 * any others already in the schedule
+	 * @throws IllegalArgumentException if a duplicate course is passed or 
+	 * if the passed course conflicts with any others already in the schedule
 	 */
 	public boolean addCourseToSchedule(Course c) {
-		return false;
+		for (int i = 0; i < this.schedule.size(); i++) {
+			try {
+				c.checkConflict(this.schedule.get(i)); //Check that the course to be added doesn't conflict with any others in the schedule
+			} catch (ConflictException e) {
+				throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+			}
+		}
+		try {
+			this.schedule.add(this.schedule.size(), c); //Try to add the course to the end of the schedule ArrayList
+			return true; //If an exception isn't thrown, return true
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException("You are already enrolled in " + c.getName());
+		}
 	}
 	
 	/**
@@ -44,6 +56,12 @@ public class Schedule {
 	 * @return true if the course was removed, false if the course does not exist in the schedule
 	 */
 	public boolean removeCourseFromSchedule(Course c) {
+		for (int i = 0; i < this.schedule.size(); i++) {
+			if (schedule.get(i).equals(c)) {
+				schedule.remove(i);
+				return true;
+			}
+		}
 		return false;
 	}
 	
