@@ -59,10 +59,10 @@ public class Schedule {
 		for (int i = 0; i < this.schedule.size(); i++) {
 			if (schedule.get(i).equals(c)) {
 				schedule.remove(i);
-				return true;
+				return true; //Return true if the course is found and is then removed
 			}
 		}
-		return false;
+		return false; //If no course matching the input is found in the schedule, return false
 	}
 	
 	/**
@@ -79,8 +79,15 @@ public class Schedule {
 	 * @return the schedule's course information as a 2D array
 	 */
 	public String[][] getScheduledCourses() {
-		//TODO implement
-		return null;
+		//Initialize string array with enough rows for all courses in the schedule and 3 columns,
+		//one for each field of interest for each course
+		String[][] courseArray = new String[this.schedule.size()][3];
+		for (int i = 0; i < this.schedule.size(); i++) {
+			courseArray[i][0] = this.schedule.get(i).getName();
+			courseArray[i][1] = this.schedule.get(i).getTitle();
+			courseArray[i][2] = this.schedule.get(i).getMeetingString();
+		}
+		return courseArray;
 	}
 	
 	/**
