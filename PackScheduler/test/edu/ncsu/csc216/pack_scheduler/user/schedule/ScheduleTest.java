@@ -223,6 +223,17 @@ public class ScheduleTest {
 		s.setTitle("mY sCheDulE");
 		
 		assertEquals("mY sCheDulE", s.getTitle());
+		
+		//Try setting a null title
+		s.resetSchedule();
+		String invalidString = null;
+		try {
+			s.setTitle(invalidString);
+			fail();
+		} catch (IllegalArgumentException e){
+			assertEquals("Title cannot be null", e.getMessage());
+			assertEquals("My Schedule", s.getTitle());
+		}
 	}
 
 }
