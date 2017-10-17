@@ -4,67 +4,225 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+
 /**
  * Unit tests for Schedule
+ * 
  * @author Noah Benveniste
  * @author Kevin Hildner
  */
 public class ScheduleTest {
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#Schedule()}.
+	 * Tests the constructor for a schedule object
 	 */
 	@Test
 	public void testSchedule() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+		assertEquals("My Schedule", s.getTitle());
+		assertEquals(0, s.getScheduledCourses().length);
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#addCourseToSchedule(edu.ncsu.csc216.pack_scheduler.course.Course)}.
+	 * Tests the addCourse method
 	 */
 	@Test
 	public void testAddCourseToSchedule() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+
+		// Create new courses to add to the schedule
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", "TH", 1100, 1230);
+		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+
+		// Test adding valid courses
+		assertTrue(s.addCourseToSchedule(c1));
+		assertTrue(s.addCourseToSchedule(c2));
+		assertTrue(s.addCourseToSchedule(c3));
+
+		// Test trying to add a conflicting course
+		try {
+			s.addCourseToSchedule(c4);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("The course cannot be added due to a conflict.", e.getMessage());
+		}
+
+		// Test trying to add a duplicate course
+		try {
+			s.addCourseToSchedule(c5);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("You are already enrolled in CSC216", e.getMessage());
+		}
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#removeCourseFromSchedule(edu.ncsu.csc216.pack_scheduler.course.Course)}.
+	 * Tests the removeCourseFromSchedule method
 	 */
 	@Test
 	public void testRemoveCourseFromSchedule() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+
+		// Create new courses to add to the schedule
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", "TH", 1100, 1230);
+
+		// Add the courses to the schedule
+		s.addCourseToSchedule(c1);
+		s.addCourseToSchedule(c2);
+		s.addCourseToSchedule(c3);
+
+		String[][] courses = s.getScheduledCourses();
+
+		assertEquals(3, courses.length);
+		assertEquals("CSC216", courses[0][0]);
+		assertEquals("Programming Concepts - Java", courses[0][1]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("BW216", courses[1][0]);
+		assertEquals("Basket Weaving Concepts", courses[1][1]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("CSC316", courses[2][0]);
+		assertEquals("Data structures", courses[2][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
+
+		// Try removing a course that is not on the list
+		assertFalse(s.removeCourseFromSchedule(c4));
+
+		courses = s.getScheduledCourses();
+		assertEquals(3, courses.length);
+		assertEquals("CSC216", courses[0][0]);
+		assertEquals("Programming Concepts - Java", courses[0][1]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("BW216", courses[1][0]);
+		assertEquals("Basket Weaving Concepts", courses[1][1]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("CSC316", courses[2][0]);
+		assertEquals("Data structures", courses[2][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
+
+		// Try removing a course from the middle of the list
+		assertTrue(s.removeCourseFromSchedule(c2));
+
+		courses = s.getScheduledCourses();
+		assertEquals(2, courses.length);
+		assertEquals("CSC216", courses[0][0]);
+		assertEquals("Programming Concepts - Java", courses[0][1]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("CSC316", courses[1][0]);
+		assertEquals("Data structures", courses[1][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[1][2]);
+
+		s.addCourseToSchedule(c2);
+
+		// Try removing a course from the front of the list
+		assertTrue(s.removeCourseFromSchedule(c1));
+
+		courses = s.getScheduledCourses();
+		assertEquals(2, courses.length);
+		assertEquals("CSC316", courses[0][0]);
+		assertEquals("Data structures", courses[0][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[0][2]);
+		assertEquals("BW216", courses[1][0]);
+		assertEquals("Basket Weaving Concepts", courses[1][1]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+
+		// Try removing a course form the end of the list
+		assertTrue(s.removeCourseFromSchedule(c2));
+
+		courses = s.getScheduledCourses();
+		assertEquals(1, courses.length);
+		assertEquals("CSC316", courses[0][0]);
+		assertEquals("Data structures", courses[0][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[0][2]);
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#resetSchedule()}.
+	 * Tests the ResetSchedule method
 	 */
 	@Test
 	public void testResetSchedule() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+
+		// Create new courses to add to the schedule
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+
+		// Add the courses to the schedule
+		s.addCourseToSchedule(c1);
+		s.addCourseToSchedule(c2);
+		s.addCourseToSchedule(c3);
+
+		String[][] courses = s.getScheduledCourses();
+
+		assertEquals(3, courses.length);
+
+		// Try resetting the schedule
+		s.resetSchedule();
+
+		courses = s.getScheduledCourses();
+
+		assertEquals(0, courses.length);
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#getScheduledCourses()}.
+	 * Test the getScheduledCourses method
 	 */
 	@Test
 	public void testGetScheduledCourses() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+
+		// Create new courses to add to the schedule
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+
+		// Add the courses to the schedule
+		s.addCourseToSchedule(c1);
+		s.addCourseToSchedule(c2);
+		s.addCourseToSchedule(c3);
+
+		// Get the string array of scheduled courses
+		String[][] courses = s.getScheduledCourses();
+
+		assertEquals(3, courses.length);
+		assertEquals("CSC216", courses[0][0]);
+		assertEquals("Programming Concepts - Java", courses[0][1]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("BW216", courses[1][0]);
+		assertEquals("Basket Weaving Concepts", courses[1][1]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("CSC316", courses[2][0]);
+		assertEquals("Data structures", courses[2][1]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#getTitle()}.
-	 */
-	@Test
-	public void testGetTitle() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule#setTitle(java.lang.String)}.
+	 * Tests the setTitle method
 	 */
 	@Test
 	public void testSetTitle() {
-		fail("Not yet implemented");
+		// Create a new schedule
+		Schedule s = new Schedule();
+		
+		assertEquals("My Schedule", s.getTitle());
+		
+		// Try setting the title
+		s.setTitle("mY sCheDulE");
+		
+		assertEquals("mY sCheDulE", s.getTitle());
 	}
 
 }

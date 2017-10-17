@@ -36,10 +36,12 @@ public class Schedule {
 	 */
 	public boolean addCourseToSchedule(Course c) {
 		for (int i = 0; i < this.schedule.size(); i++) {
-			try {
-				c.checkConflict(this.schedule.get(i)); //Check that the course to be added doesn't conflict with any others in the schedule
-			} catch (ConflictException e) {
-				throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+			if(!this.schedule.get(i).equals(c)) { 
+				try {
+					c.checkConflict(this.schedule.get(i)); //Check that the course to be added doesn't conflict with any others in the schedule
+				} catch (ConflictException e) {
+					throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+				}
 			}
 		}
 		try {
