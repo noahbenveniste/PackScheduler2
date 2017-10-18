@@ -21,7 +21,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * 
 	 */
 	public LinkedAbstractList(int capacity) {
-		
+		if (capacity < 0) {
+			throw new IllegalArgumentException("Capacity cannot be less than zero.");
+		} else if (capacity < this.size) {
+			throw new IllegalArgumentException("Capacity cannot be less than current list's size.");
+		}
+		this.front = null;
+		this.size = 0;
 	}
 	
 	/**
