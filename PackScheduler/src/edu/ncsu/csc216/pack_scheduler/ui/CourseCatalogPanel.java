@@ -398,7 +398,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(this, "The times are invalid.");
 				return;
 			}
-			startTime = (comboStartHour.getItemAt(hourIdx) == 12) ? 0 :  comboStartHour.getItemAt(hourIdx) * 100;
+			startTime = comboStartHour.getItemAt(hourIdx) * 100;
 			int minIdx = comboStartMin.getSelectedIndex();
 			if (minIdx == -1) {
 				JOptionPane.showMessageDialog(this, "The times are invalid.");
@@ -420,7 +420,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(this, "The times are invalid.");
 				return;
 			}
-			endTime = (comboEndHour.getItemAt(hourIdx) == 12) ? 0 :  comboEndHour.getItemAt(hourIdx) * 100;
+			endTime = comboEndHour.getItemAt(hourIdx) * 100;
 			minIdx = comboEndMin.getSelectedIndex();
 			if (minIdx == -1) {
 				JOptionPane.showMessageDialog(this, "The times are invalid.");

@@ -69,8 +69,12 @@ public class CourseCatalog {
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorID,
 			String meetingDays, int startTime, int endTime) {
 		// Create the course
-		Course c = new Course(name, title, section, credits, instructorID, meetingDays, startTime, endTime);
-
+		Course c = null;
+		if (meetingDays.equals("A")) {
+			c = new Course(name, title, section, credits, instructorID, meetingDays);
+		} else {
+			c = new Course(name, title, section, credits, instructorID, meetingDays, startTime, endTime);
+		}
 		// Check for duplicate
 		for (int i = 0; i < catalog.size(); i++) {
 			if (catalog.get(i).isDuplicate(c)) {

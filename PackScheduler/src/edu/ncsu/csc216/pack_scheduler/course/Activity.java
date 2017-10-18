@@ -75,10 +75,12 @@ public abstract class Activity implements Conflict {
 	 * not between 0 and 59, or if the start time is greater than the end time
 	 */
 	public void setActivityTime(int startTime, int endTime) {
+		/**
 		//Check that if meetingDays is "A", startTime and endTime are both zero
 		if (this.getMeetingDays().equals("A") && (startTime != 0 && endTime != 0)) {
 			throw new IllegalArgumentException("Invalid course times");
 		}
+		*/
 		//Check that the times are valid
 		if (startTime < 0 || startTime > 2359) {
 			throw new IllegalArgumentException("Invalid course times");
