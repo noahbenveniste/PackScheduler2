@@ -29,6 +29,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		this.front = null;
 		this.size = 0;
+		this.capacity = capacity;
 	}
 	
 	/**
