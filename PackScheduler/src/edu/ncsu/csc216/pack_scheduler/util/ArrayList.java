@@ -38,6 +38,7 @@ public class ArrayList<E> extends AbstractList<E> {
 	 */
 	@Override
 	public void add(int idx, E element) {
+		System.out.println(idx + " " + element);
 		if (element == null) {
 			throw new NullPointerException("Cannot add null elements");
 		}

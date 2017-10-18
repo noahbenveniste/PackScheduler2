@@ -74,8 +74,7 @@ public class ArrayListTest {
 	}
 
 	/**
-	 * Test method for
-	 * {@link edu.ncsu.csc216.pack_scheduler.util.ArrayList#add(int, java.lang.Object)}.
+	 * Test method for add(int, E)
 	 */
 	@Test
 	public void testAddIntE() {
