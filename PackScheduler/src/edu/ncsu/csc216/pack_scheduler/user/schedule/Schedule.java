@@ -43,6 +43,10 @@ public class Schedule {
 					throw new IllegalArgumentException("The course cannot be added due to a conflict.");
 				}
 			}
+			//Check that no courses with the same title exist in the schedule already
+			if (this.schedule.get(i).getName().equals(c.getName())) {
+				throw new IllegalArgumentException("You are already enrolled in " + c.getName());
+			}
 		}
 		try {
 			this.schedule.add(this.schedule.size(), c); //Try to add the course to the end of the schedule ArrayList
