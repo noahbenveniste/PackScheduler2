@@ -10,15 +10,16 @@ import java.util.AbstractList;
  */
 public class LinkedAbstractList<E> extends AbstractList<E> {
 
-	/** */
+	/** Reference that points to the node at the front of the list */
 	private ListNode front;
-	/** */
+	/** The number of elements in the list */
 	private int size;
-	/** */
+	/** The number of elements the list can store */
 	private int capacity;
 	
 	/**
-	 * 
+	 * Constructs a LinkedAbstractList object of a specified capacity.
+	 * @throws IllegalArgumentException if the capacity is less than zero or less than the current list's size
 	 */
 	public LinkedAbstractList(int capacity) {
 		if (capacity < 0) {
@@ -61,6 +62,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		if (idx == 0) {
 			ListNode newFront = new ListNode(element, this.front); //Make the new node point to the old front
 			this.front = newFront; //Make the front field point to the new front;
+			this.size++;
+			return;
 		}
 		//Adding to the middle or end of the list
 		current = this.front;
@@ -73,20 +76,66 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			current = current.next;
 		}
 		current.next = newNode; //Make the element at the index just before the index being added to point to the newly created node
+		this.size++;
+		return;
 	}
 	
 	/**
-	 * 
+	 * Removes an element at a specified index
+	 * @return the removed element
 	 */
 	public E remove(int idx) {
-		return null;
+		//Removing from the front of the list
+		if (idx == 0) {
+			E oldData = front.data;
+			front = front.next;
+			this.size--;
+			return oldData;
+		}
+		//Removing from the middle or end of the list
+		ListNode current = this.front;
+		ListNode previous = null;
+		for (int i = 0; i < idx; i++) { //Traverse the list to get the reference to the element to remove
+			previous = current;
+			current = current.next;
+		}
+		E oldData = current.data; //Store the data at the element to be removed
+		previous.next = current.next; //Makes the node before the node to remove point to the node after the node to be removed
+		this.size--;
+		return oldData;
 	}
 	
 	/**
-	 * @return 
+	 * Overrides the data value at a given index in the list
+	 * @return the overridden element
+	 * @throws NullPointerException if the element to set is null
+	 * @throws IllegalArgumentException if a duplicate element is added
+	 * @throws IndexOutOfBoundsException if the index is out of bounds
 	 */
 	public E set(int idx, E element) {
-		return null;
+		//Check for null elements
+		if (element == null) {
+			throw new NullPointerException("Cannot set null elements.");
+		}
+		//Check for duplicates
+		ListNode current = this.front;
+		for (int i = 0; i < this.size(); i++) {
+			if (current.data.equals(element)) {
+				throw new IllegalArgumentException("Cannot add duplicate elements.");
+			}
+			current = current.next;
+		}
+		//Check for out of bounds index
+		if (idx < 0 || idx >= this.size()) {
+			throw new IndexOutOfBoundsException("Index is outside the acceptable range.");
+		}
+		current = this.front;
+		for (int i = 0; i < idx; i++) { //Traverse the list to get the reference to the element to change the data
+			current = current.next;
+		}
+		E oldData = current.data; //Get the old data from the element
+		current.data = element; //Overwrite the data in the node with the new data
+		return oldData; //Return the old data value
 	}
 	
 	/**
@@ -97,6 +146,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 */
 	@Override
 	public E get(int idx) {
+		//Check for out of bounds index
 		if (idx < 0 || idx >= this.size()) {
 			throw new IndexOutOfBoundsException("Index is outside the acceptable range.");
 		}
@@ -127,23 +177,23 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @author Kevin Hildner
 	 */
 	private class ListNode {
-		/** */
+		/** The data element being stored */
 		private E data;
-		/** */
+		/** The reference to the next node in the list */
 		private ListNode next;
 		
 		/**
-		 * 
-		 * @param data
+		 * Constructs a ListNode with just a data field passed
+		 * @param data the data element to store
 		 */
 		public ListNode(E data) {
 			this.data = data;
 		}
 		
 		/**
-		 * 
-		 * @param data
-		 * @param next
+		 * Constructs a ListNode with a data field and a next node reference passed
+		 * @param data the data element to store
+		 * @param next the reference to the next node in the list
 		 */
 		public ListNode(E data, ListNode next) {
 			this(data);
