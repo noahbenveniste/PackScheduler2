@@ -52,21 +52,35 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	}
 	
 	/**
-	 * 
+	 * Gets the element in the list at a specified index
+	 * @return the element at the specified index
+	 * @throws IndexOutOfBoundsException if the specified index is less than zero or greater than
+	 * or equal to the list's size
 	 */
 	@Override
-	public E get(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public E get(int idx) {
+		if (idx < 0 || idx >= this.size()) {
+			throw new IndexOutOfBoundsException("Index is outside the acceptable range.");
+		}
+		E data = null;
+		ListNode current = this.front;
+		for (int i = 0; i < this.size(); i++) {
+			if (i == idx) {
+				data =  current.data;
+				break;
+			}
+			current = current.next;
+		}
+		return data;
 	}
 
 	/**
-	 * 
+	 * Gets the list's current size i.e. the number of elements in contains
+	 * @return the list's size
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}
 	
 	/**
