@@ -86,14 +86,17 @@ public class ScheduleTest {
 
 		assertEquals(3, courses.length);
 		assertEquals("CSC216", courses[0][0]);
-		assertEquals("Programming Concepts - Java", courses[0][1]);
-		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("001", courses[0][1]);
+		assertEquals("Programming Concepts - Java", courses[0][2]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][3]);
 		assertEquals("BW216", courses[1][0]);
-		assertEquals("Basket Weaving Concepts", courses[1][1]);
-		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("001", courses[1][1]);
+		assertEquals("Basket Weaving Concepts", courses[1][2]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][3]);
 		assertEquals("CSC316", courses[2][0]);
-		assertEquals("Data structures", courses[2][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
+		assertEquals("002", courses[2][1]);
+		assertEquals("Data structures", courses[2][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][3]);
 
 		// Try removing a course that is not on the list
 		assertFalse(s.removeCourseFromSchedule(c4));
@@ -101,14 +104,17 @@ public class ScheduleTest {
 		courses = s.getScheduledCourses();
 		assertEquals(3, courses.length);
 		assertEquals("CSC216", courses[0][0]);
-		assertEquals("Programming Concepts - Java", courses[0][1]);
-		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("001", courses[0][1]);
+		assertEquals("Programming Concepts - Java", courses[0][2]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][3]);
 		assertEquals("BW216", courses[1][0]);
-		assertEquals("Basket Weaving Concepts", courses[1][1]);
-		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("001", courses[1][1]);
+		assertEquals("Basket Weaving Concepts", courses[1][2]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][3]);
 		assertEquals("CSC316", courses[2][0]);
-		assertEquals("Data structures", courses[2][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
+		assertEquals("002", courses[2][1]);
+		assertEquals("Data structures", courses[2][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][3]);
 
 		// Try removing a course from the middle of the list
 		assertTrue(s.removeCourseFromSchedule(c2));
@@ -116,11 +122,14 @@ public class ScheduleTest {
 		courses = s.getScheduledCourses();
 		assertEquals(2, courses.length);
 		assertEquals("CSC216", courses[0][0]);
-		assertEquals("Programming Concepts - Java", courses[0][1]);
-		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("001", courses[0][1]);
+		assertEquals("Programming Concepts - Java", courses[0][2]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][3]);
 		assertEquals("CSC316", courses[1][0]);
-		assertEquals("Data structures", courses[1][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("002", courses[1][1]);
+		assertEquals("Data structures", courses[1][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[1][3]);
+		
 
 		s.addCourseToSchedule(c2);
 
@@ -130,11 +139,13 @@ public class ScheduleTest {
 		courses = s.getScheduledCourses();
 		assertEquals(2, courses.length);
 		assertEquals("CSC316", courses[0][0]);
-		assertEquals("Data structures", courses[0][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[0][2]);
+		assertEquals("002", courses[0][1]);
+		assertEquals("Data structures", courses[0][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[0][3]);
 		assertEquals("BW216", courses[1][0]);
-		assertEquals("Basket Weaving Concepts", courses[1][1]);
-		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("001", courses[1][1]);
+		assertEquals("Basket Weaving Concepts", courses[1][2]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][3]);
 
 		// Try removing a course form the end of the list
 		assertTrue(s.removeCourseFromSchedule(c2));
@@ -142,8 +153,9 @@ public class ScheduleTest {
 		courses = s.getScheduledCourses();
 		assertEquals(1, courses.length);
 		assertEquals("CSC316", courses[0][0]);
-		assertEquals("Data structures", courses[0][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[0][2]);
+		assertEquals("002", courses[0][1]);
+		assertEquals("Data structures", courses[0][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[0][3]);
 	}
 
 	/**
@@ -199,14 +211,17 @@ public class ScheduleTest {
 
 		assertEquals(3, courses.length);
 		assertEquals("CSC216", courses[0][0]);
-		assertEquals("Programming Concepts - Java", courses[0][1]);
-		assertEquals("MW 1:30PM-2:45PM", courses[0][2]);
+		assertEquals("001", courses[0][1]);
+		assertEquals("Programming Concepts - Java", courses[0][2]);
+		assertEquals("MW 1:30PM-2:45PM", courses[0][3]);
 		assertEquals("BW216", courses[1][0]);
-		assertEquals("Basket Weaving Concepts", courses[1][1]);
-		assertEquals("TH 12:00PM-1:00PM", courses[1][2]);
+		assertEquals("001", courses[1][1]);
+		assertEquals("Basket Weaving Concepts", courses[1][2]);
+		assertEquals("TH 12:00PM-1:00PM", courses[1][3]);
 		assertEquals("CSC316", courses[2][0]);
-		assertEquals("Data structures", courses[2][1]);
-		assertEquals("MW 12:00PM-1:00PM", courses[2][2]);
+		assertEquals("002", courses[2][1]);
+		assertEquals("Data structures", courses[2][2]);
+		assertEquals("MW 12:00PM-1:00PM", courses[2][3]);
 	}
 
 	/**

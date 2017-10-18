@@ -81,13 +81,14 @@ public class Schedule {
 	 * @return the schedule's course information as a 2D array
 	 */
 	public String[][] getScheduledCourses() {
-		//Initialize string array with enough rows for all courses in the schedule and 3 columns,
+		//Initialize string array with enough rows for all courses in the schedule and 4 columns,
 		//one for each field of interest for each course
-		String[][] courseArray = new String[this.schedule.size()][3];
+		String[][] courseArray = new String[this.schedule.size()][4];
 		for (int i = 0; i < this.schedule.size(); i++) {
 			courseArray[i][0] = this.schedule.get(i).getName();
-			courseArray[i][1] = this.schedule.get(i).getTitle();
-			courseArray[i][2] = this.schedule.get(i).getMeetingString();
+			courseArray[i][1] = this.schedule.get(i).getSection();
+			courseArray[i][2] = this.schedule.get(i).getTitle();
+			courseArray[i][3] = this.schedule.get(i).getMeetingString();
 		}
 		return courseArray;
 	}
