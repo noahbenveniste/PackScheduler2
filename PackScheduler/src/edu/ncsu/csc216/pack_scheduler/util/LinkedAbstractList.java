@@ -10,6 +10,20 @@ import java.util.AbstractList;
  */
 public class LinkedAbstractList<E> extends AbstractList<E> {
 
+	/** */
+	private ListNode front;
+	/** */
+	private int size;
+	/** */
+	private int capacity;
+	
+	/**
+	 * 
+	 */
+	public LinkedAbstractList(int capacity) {
+		
+	}
+	
 	/**
 	 * 
 	 */
@@ -47,5 +61,35 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	public int size() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	/**
+	 * 
+	 * @author Noah Benveniste
+	 * @author Kevin Hildner
+	 */
+	private class ListNode {
+		/** */
+		private E data;
+		/** */
+		private ListNode next;
+		
+		/**
+		 * 
+		 * @param data
+		 */
+		public ListNode(E data) {
+			this.data = data;
+		}
+		
+		/**
+		 * 
+		 * @param data
+		 * @param next
+		 */
+		public ListNode(E data, ListNode next) {
+			this(data);
+			this.next = next;
+		}
 	}
 }
