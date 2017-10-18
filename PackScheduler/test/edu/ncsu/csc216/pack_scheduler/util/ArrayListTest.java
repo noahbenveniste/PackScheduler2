@@ -7,8 +7,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.collections.list.SortedList;
-
 /**
  * Unit tests for ArrayList
  * 
