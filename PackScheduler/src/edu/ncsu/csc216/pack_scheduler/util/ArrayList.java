@@ -8,7 +8,7 @@ import java.util.AbstractList;
  * @author Kevin Hildner
  */
 public class ArrayList<E> extends AbstractList<E> {
-	/** */
+	/** The array's current size, based on the number of non-null elements present */
 	private static final int INIT_SIZE = 10;
 	/** */
 	private E[] list;
@@ -39,6 +39,8 @@ public class ArrayList<E> extends AbstractList<E> {
 	@Override
 	public void add(int idx, E element) {
 		System.out.println(idx + " " + element);
+		System.out.println(this.size());
+		System.out.println(this.capacity);
 		if (element == null) {
 			throw new NullPointerException("Cannot add null elements");
 		}
