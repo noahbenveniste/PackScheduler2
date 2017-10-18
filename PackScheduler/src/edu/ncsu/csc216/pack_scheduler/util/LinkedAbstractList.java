@@ -83,8 +83,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	/**
 	 * Removes an element at a specified index
 	 * @return the removed element
+	 * @throws IndexOutOfBoundsException if the specified index is out of bounds
 	 */
 	public E remove(int idx) {
+		//Check for out of bounds index
+		if (idx < 0 || idx > this.size()) {
+			throw new IndexOutOfBoundsException("Index is outside the acceptable range.");
+		}
 		//Removing from the front of the list
 		if (idx == 0) {
 			E oldData = front.data;
