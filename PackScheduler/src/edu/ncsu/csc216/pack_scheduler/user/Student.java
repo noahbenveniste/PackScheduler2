@@ -1,4 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
+
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
+
 /**
  * Class for a student object
  * @author Sarah Heckman
@@ -12,6 +15,8 @@ public class Student extends User implements Comparable<Student> {
 	
 	/** The maximum number of credits that the student can enroll in */
 	private int maxCredits;
+	/** The student's schedule */
+	private Schedule schedule;
 	
 	/** Class Constants */
 	
@@ -33,6 +38,7 @@ public class Student extends User implements Comparable<Student> {
 		//Set the fields by calling setter methods to enforce class invariants
 		super(firstName, lastName, id, email, hashPW);
 		this.setMaxCredits(maxCredits);
+		this.schedule = new Schedule();
 	}
 	
 	/**
@@ -67,6 +73,14 @@ public class Student extends User implements Comparable<Student> {
 		}
 		//Set the field if all conditions are met
 		this.maxCredits = maxCredits;
+	}
+	
+	/**
+	 * Getter method for the schedule field
+	 * @return the student's schedule
+	 */
+	public Schedule getSchedule() {
+		return this.schedule;
 	}
 	
 	/**
