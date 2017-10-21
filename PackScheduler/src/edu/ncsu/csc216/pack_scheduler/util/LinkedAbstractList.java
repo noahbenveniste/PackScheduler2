@@ -193,7 +193,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		 * @param data the data element to store
 		 */
 		public ListNode(E data) {
-			this.data = data;
+			this(data, null);
 		}
 		
 		/**
@@ -202,7 +202,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		 * @param next the reference to the next node in the list
 		 */
 		public ListNode(E data, ListNode next) {
-			this(data);
+			this.data = data;
 			this.next = next;
 		}
 	}
