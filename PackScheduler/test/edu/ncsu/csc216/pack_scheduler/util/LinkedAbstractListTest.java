@@ -270,6 +270,24 @@ public class LinkedAbstractListTest {
 		} catch (IndexOutOfBoundsException e) {
 			assertEquals("Index is outside the acceptable range.", e.getMessage());
 		}
+		
+		String str;
+		// Remove from the front of the list
+		str = s.remove(0);
+		assertEquals("a", str);
+		assertEquals("b", s.get(0));
+		assertEquals("c", s.get(1));
+		assertEquals("d", s.get(2));
+		
+		// Remove from the middle of the list
+		str = s.remove(1);
+		assertEquals("c", str);
+		assertEquals("b", s.get(0));
+		assertEquals("d", s.get(1));
+		// Remove from the end of the list
+		str = s.remove(1);
+		assertEquals("d", str);
+		assertEquals("b", s.get(0));
 	}
 
 	/**
