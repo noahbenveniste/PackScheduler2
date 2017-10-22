@@ -105,9 +105,129 @@ public class LinkedAbstractListTest {
 		assertEquals("Orange", s1.get(3));
 
 		// Test adding to the middle
+		s1.add(2, "Pineapple");
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		
+		// Test adding a duplicate to a non-full list
+		try {
+			s1.add(2, "Pineapple");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add duplicate elements.", e.getMessage());
+		}
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		
+		// Test adding a null element to a non-full list
+		try {
+			s1.add(2, null);
+		} catch (NullPointerException e) {
+			assertEquals("Cannot add null elements.", e.getMessage());
+		}
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		
+		// Test adding an element to index >= capacity
+		try {
+			s1.add(6, "Mango");
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
 
-		// Test adding to the end
-
+		try {
+			s1.add(7, "Mango");
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		
+		// Test adding an element to index < 0
+		try {
+			s1.add(-1, "Mango");
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
+		assertEquals(5, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		
+		// Test adding an element to the end of the list
+		s1.add(5, "Mango");
+		assertEquals(6, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		assertEquals("Mango", s1.get(5));
+		
+		// Test adding an element to the front of the list when the list is full
+		try {
+			s1.add(0, "Grapefruit");
+		} catch (IllegalArgumentException e) {
+			assertEquals("List is full.", e.getMessage());
+		}
+		assertEquals(6, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		assertEquals("Mango", s1.get(5));
+		
+		// Test adding an element to the middle of the list when the list is full
+		try {
+			s1.add(2, "Grapefruit");
+		} catch (IllegalArgumentException e) {
+			assertEquals("List is full.", e.getMessage());
+		}
+		assertEquals(6, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		assertEquals("Mango", s1.get(5));
+		
+		//Test adding an element to the end of the list when the list is full
+		try {
+			s1.add(5, "Grapefruit");
+		} catch (IllegalArgumentException e) {
+			assertEquals("List is full.", e.getMessage());
+		}
+		assertEquals(6, s1.size());
+		assertEquals("Kiwi", s1.get(0));
+		assertEquals("Apple", s1.get(1));
+		assertEquals("Pineapple", s1.get(2));
+		assertEquals("Banana", s1.get(3));
+		assertEquals("Orange", s1.get(4));
+		assertEquals("Mango", s1.get(5));
 	}
 
 	/**
