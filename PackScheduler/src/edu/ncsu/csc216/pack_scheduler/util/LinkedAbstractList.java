@@ -88,7 +88,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 */
 	public E remove(int idx) {
 		//Check for out of bounds index
-		if (idx < 0 || idx > this.size()) {
+		if (idx < 0 || idx >= this.size()) {
 			throw new IndexOutOfBoundsException("Index is outside the acceptable range.");
 		}
 		//Removing from the front of the list

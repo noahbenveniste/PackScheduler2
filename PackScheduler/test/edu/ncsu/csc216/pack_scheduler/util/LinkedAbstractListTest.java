@@ -53,7 +53,7 @@ public class LinkedAbstractListTest {
 		assertEquals("Apple", s1.get(0));
 		// Test getting an element from the middle of the list
 		assertEquals("Banana", s1.get(1));
-		// Test getting an element fromt the end of the list
+		// Test getting an element front the end of the list
 		assertEquals("Orange", s1.get(2));
 	}
 
@@ -235,7 +235,41 @@ public class LinkedAbstractListTest {
 	 */
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		LinkedAbstractList<String> s = new LinkedAbstractList<String>(5);
+		
+		// Try removing from an empty list
+		try {
+			s.remove(0);
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
+		
+		// Populate the list
+		s.add(0, "a");
+		s.add(1, "b");
+		s.add(2, "c");
+		s.add(3, "d");
+		
+		assertEquals("a", s.get(0));
+		assertEquals("b", s.get(1));
+		assertEquals("c", s.get(2));
+		assertEquals("d", s.get(3));
+		
+		assertEquals(4, s.size());
+		
+		// Try removing from an index < 0
+		try {
+			s.remove(-1);
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
+		
+		// Try removing from an index > size
+		try {
+			s.remove(4);
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Index is outside the acceptable range.", e.getMessage());
+		}
 	}
 
 	/**
@@ -243,6 +277,19 @@ public class LinkedAbstractListTest {
 	 */
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		LinkedAbstractList<String> s = new LinkedAbstractList<String>(5);
+		s.add(0, "a");
+		s.add(1, "b");
+		s.add(2, "c");
+		s.add(3, "d");
+		s.add(4, "e");
+		
+		assertEquals("a", s.get(0));
+		assertEquals("b", s.get(1));
+		assertEquals("c", s.get(2));
+		assertEquals("d", s.get(3));
+		assertEquals("e", s.get(4));
+		
+		assertEquals(5, s.size());
 	}
 }
