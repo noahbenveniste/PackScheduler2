@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
@@ -22,6 +23,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private String instructorId;
 	/** Used for checking the validity of course names */
 	private CourseNameValidator validator;
+	/** Stores the roll of Students enrolled in this course */
+	private CourseRoll roll;
 	
 	
 	/** Constructors */
@@ -33,11 +36,12 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section Section number of the Course
 	 * @param credits Number of credit hours for the Course
 	 * @param instructorId Course instructor's unity id
+	 * @param enrollmentCap the number of students that can enroll in the course
 	 * @param meetingDays First letter of all days the Course meets
 	 * @param startTime Start time of the Course
 	 * @param endTime End time of the Course
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) {
 		super(title, meetingDays, startTime, endTime);
 		this.validator = new CourseNameValidator();
@@ -45,6 +49,7 @@ public class Course extends Activity implements Comparable<Course> {
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
+	    this.roll = new CourseRoll(enrollmentCap);
 	}
 	
 	/**
@@ -54,10 +59,11 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section Section number of the Course
 	 * @param credits Number of credit hours for the Course
 	 * @param instructorId Course instructor's unity id
+	 * @param enrollmentCap the number of students that can enroll in the course
 	 * @param meetingDays First letter of all days the Course meets
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
-		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap ,String meetingDays) {
+		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	}
     
 	/** Getters and Setters */
@@ -243,6 +249,14 @@ public class Course extends Activity implements Comparable<Course> {
 	public String[] getLongDisplayArray() {
 		return new String[] {this.getName(), this.getSection(), this.getTitle(), 
 				"" + this.getCredits(), this.getInstructorId(), this.getMeetingString(), ""};
+	}
+	
+	/**
+	 * Getter for the course's course roll
+	 * @return the course roll for this course
+	 */
+	public CourseRoll getCourseRoll() {
+		return this.roll;
 	}
 	
 	/**
