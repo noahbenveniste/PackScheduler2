@@ -15,8 +15,8 @@ public class ActivityTest {
 	 */
 	@Test
 	public void testCheckConflict() {
-		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-	    Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "TH", 1330, 1445);
+		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 100, "MW", 1330, 1445);
+	    Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 100, "TH", 1330, 1445);
 	    
 	    //Test checking for a conflict with two activities that DO NOT conflict
 	    try {
