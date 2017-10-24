@@ -82,7 +82,6 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		current.next = newNode; //Make the element at the index just before the index being added to point to the newly created node
 		this.size++;
-		return;
 	}
 	
 	/**
