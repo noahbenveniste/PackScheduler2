@@ -43,7 +43,7 @@ public class Schedule {
 					throw new IllegalArgumentException("The course cannot be added due to a conflict.");
 				}
 			}
-			//Check that no courses with the same title exist in the schedule already
+			//Check that no courses with the same name exist in the schedule already
 			if (this.schedule.get(i).getName().equals(c.getName())) {
 				throw new IllegalArgumentException("You are already enrolled in " + c.getName());
 			}
@@ -137,7 +137,8 @@ public class Schedule {
 			return false;
 		}
 		for (int i = 0; i < this.schedule.size(); i++) {
-			if (c.equals(this.schedule.get(i))) { //Check that the course doesn't already exist in the schedule
+			//Check that no courses with the same name exist in the schedule already
+			if (this.schedule.get(i).getName().equals(c.getName())) {
 				return false;
 			}
 			try { //Check for conflicting courses
