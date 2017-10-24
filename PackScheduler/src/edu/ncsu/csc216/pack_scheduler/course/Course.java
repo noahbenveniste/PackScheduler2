@@ -62,7 +62,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param enrollmentCap the number of students that can enroll in the course
 	 * @param meetingDays First letter of all days the Course meets
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap ,String meetingDays) {
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
 		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	}
     
