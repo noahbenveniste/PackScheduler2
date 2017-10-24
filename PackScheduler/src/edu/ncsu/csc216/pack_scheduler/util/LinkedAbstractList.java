@@ -3,7 +3,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import java.util.AbstractList;
 
 /**
- * 
+ * A custom implemented linked list. User can add elements to any index from 0 to size such that size
+ * is less than or equal to the list's capacity.
  * @author Noah Benveniste
  * @author Kevin Hildner
  * @param <E> Indicates that the list can store any object type
@@ -19,6 +20,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	
 	/**
 	 * Constructs a LinkedAbstractList object of a specified capacity.
+	 * @param capacity the maximum number of elements that the list can hold
 	 * @throws IllegalArgumentException if the capacity is less than zero or less than the current list's size
 	 */
 	public LinkedAbstractList(int capacity) {
@@ -34,6 +36,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	
 	/**
 	 * Adds an element to a specified index in the list
+	 * @param idx the index to add the element at
+	 * @param element the element to add to the list
 	 * @throws IllegalArgumentException if the list is full or if a duplicate element is added
 	 * @throws NullPointerException if the added element is null
 	 * @throws IndexOutOfBoundsException if the index is less than zero or greater than the list's size
@@ -83,6 +87,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	
 	/**
 	 * Removes an element at a specified index
+	 * @param idx the index of the element to remove
 	 * @return the removed element
 	 * @throws IndexOutOfBoundsException if the specified index is out of bounds
 	 */
@@ -113,6 +118,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	
 	/**
 	 * Overrides the data value at a given index in the list
+	 * @param idx the index of the element to override
+	 * @param element the element to override with
 	 * @return the overridden element
 	 * @throws NullPointerException if the element to set is null
 	 * @throws IllegalArgumentException if a duplicate element is added
@@ -178,7 +185,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	}
 	
 	/**
-	 * 
+	 * Class for a ListNode that makes up a LinkedList.
 	 * @author Noah Benveniste
 	 * @author Kevin Hildner
 	 */
