@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.ncsu.csc216.pack_scheduler.catalog;
 
 import java.io.FileNotFoundException;
@@ -66,14 +63,14 @@ public class CourseCatalog {
 	 * @return true if the course is valid and can be added to the catalog, returns false if the 
 	 * course already exists in the catalog
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorID,
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorID, int enrollmentCap,
 			String meetingDays, int startTime, int endTime) {
 		// Create the course
 		Course c = null;
 		if (meetingDays.equals("A")) {
-			c = new Course(name, title, section, credits, instructorID, meetingDays);
+			c = new Course(name, title, section, credits, instructorID, enrollmentCap, meetingDays);
 		} else {
-			c = new Course(name, title, section, credits, instructorID, meetingDays, startTime, endTime);
+			c = new Course(name, title, section, credits, instructorID, enrollmentCap, meetingDays, startTime, endTime);
 		}
 		// Check for duplicate
 		for (int i = 0; i < catalog.size(); i++) {
