@@ -97,7 +97,7 @@ public class CourseRoll {
 			}
 		} else {
 			throw new IllegalArgumentException("The student could not be added because either because the course roll is full"
-					+ "or because the student is already enrolled.");
+					+ " or because the student is already enrolled.");
 		}
 	}
 	
