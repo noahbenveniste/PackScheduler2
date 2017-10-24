@@ -129,15 +129,11 @@ public class CourseCatalog {
 	 */
 	public String[][] getCourseCatalog() {
 		//Initialize the string array
-		String[][] courseCatalog = new String[catalog.size()][4];
+		String[][] courseCatalog = new String[catalog.size()][5];
 		//Loop through the course catalog getting the required fields and adding them
 		//to the relevant cells in the string array
 		for (int i = 0; i < catalog.size(); i++) {
-			Course c = catalog.get(i);
-			courseCatalog[i][0] = c.getName();
-			courseCatalog[i][1] = c.getSection();
-			courseCatalog[i][2] = c.getTitle();
-			courseCatalog[i][3] = c.getMeetingString();
+			courseCatalog[i] = this.catalog.get(i).getShortDisplayArray();
 		}
 		return courseCatalog;
 	}
