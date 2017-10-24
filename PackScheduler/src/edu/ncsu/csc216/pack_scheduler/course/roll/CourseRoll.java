@@ -4,6 +4,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
 /**
+ * Keeps track of and limits the roll of students in a course.
  * 
  * @author Noah Benveniste
  * @author Kevin Hildner
@@ -19,7 +20,9 @@ public class CourseRoll {
 	private static final int MAX_ENROLLMENT = 250;
 	
 	/**
+	 * Creates a new course roll. 
 	 * 
+	 * @param 
 	 */
 	public CourseRoll(int enrollmentCap) {
 		try {
