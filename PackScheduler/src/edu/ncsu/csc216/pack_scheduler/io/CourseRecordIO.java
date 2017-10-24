@@ -83,6 +83,7 @@ public class CourseRecordIO {
     	String sectionNum = "";
     	int credits = 0;
     	String id = "";
+    	int enrollmentCap = 0;
     	String meetingDays = "";
     	/**
     	String startTimeString = "";
@@ -104,6 +105,8 @@ public class CourseRecordIO {
     		credits = lineReader.nextInt();
     		//The next element should be a STRING for the instructor's ID
     		id = lineReader.next();
+    		//The next element should be an INT for the enrollment capacity
+    		enrollmentCap = lineReader.nextInt();
     		//The next element should be a STRING for the MEETING DAYS
     		meetingDays = lineReader.next();
     		//Check first that the line contains more tokens
@@ -126,12 +129,12 @@ public class CourseRecordIO {
     	try {
     		//If the meeting days is A, call the constructor for an arranged course
     		if (meetingDays.equals("A") && startTime == 0 && endTime == 0) {
-    			c = new Course(courseName, courseTitle, sectionNum, credits, id, meetingDays);
+    			c = new Course(courseName, courseTitle, sectionNum, credits, id, enrollmentCap, meetingDays);
     		} else if (meetingDays.equals("A") && (startTime != 0 || endTime != 0)) {
     			lineReader.close();
     			throw new IllegalArgumentException();
     		} else {
-    			c = new Course(courseName, courseTitle, sectionNum, credits, id, meetingDays, startTime, endTime);
+    			c = new Course(courseName, courseTitle, sectionNum, credits, id, enrollmentCap, meetingDays, startTime, endTime);
     		}
     		
     	} catch (IllegalArgumentException e) {
