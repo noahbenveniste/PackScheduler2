@@ -188,13 +188,14 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		/** The reference to the next node in the list */
 		private ListNode next;
 		
-		/**
-		 * Constructs a ListNode with just a data field passed
-		 * @param data the data element to store
-		 */
-		public ListNode(E data) {
-			this(data, null);
-		}
+		
+//		/**
+//		 * Constructs a ListNode with just a data field passed
+//		 * @param data the data element to store
+//		 */
+//		public ListNode(E data) {
+//			this(data, null);
+//		}
 		
 		/**
 		 * Constructs a ListNode with a data field and a next node reference passed
