@@ -34,11 +34,11 @@ public class ScheduleTest {
 		Schedule s = new Schedule();
 
 		// Create new courses to add to the schedule
-		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
-		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
-		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", "TH", 1100, 1230);
-		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100, 1230);
+		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
 
 		// Test adding valid courses
 		assertTrue(s.addCourseToSchedule(c1));
@@ -71,10 +71,10 @@ public class ScheduleTest {
 		Schedule s = new Schedule();
 
 		// Create new courses to add to the schedule
-		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
-		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
-		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", "TH", 1100, 1230);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100, 1230);
 
 		// Add the courses to the schedule
 		s.addCourseToSchedule(c1);
@@ -166,9 +166,9 @@ public class ScheduleTest {
 		Schedule s = new Schedule();
 
 		// Create new courses to add to the schedule
-		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
-		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
 
 		// Add the courses to the schedule
 		s.addCourseToSchedule(c1);
@@ -196,9 +196,9 @@ public class ScheduleTest {
 		Schedule s = new Schedule();
 
 		// Create new courses to add to the schedule
-		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", "TH", 1200, 1300);
-		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", "MW", 1200, 1300);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
 
 		// Add the courses to the schedule
 		s.addCourseToSchedule(c1);
