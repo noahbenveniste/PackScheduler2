@@ -152,4 +152,16 @@ public class ActivityTest {
 	        assertEquals("TH 8:30AM-9:00AM", a2.getMeetingString());
 	    } 
 	}
+	
+	/**
+	 * Tests the getTitle method
+	 */
+	@Test
+	public void testGetTitle() {
+		// Create an activity
+		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 100, "MW", 1330, 1445);
+	    
+		// Test getting the title
+		assertEquals("Programming Concepts - Java", a1.getTitle());
+	}
 }
