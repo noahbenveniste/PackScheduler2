@@ -190,6 +190,22 @@ public class RegistrationManagerTest {
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
+	    //Set up the properties object for parsing registrar.properties
+  		Properties prop = new Properties();
+  		String registrarPW;
+  		String registrarID;
+  		
+  		//Get the password and id from registrar.properties
+  		try (InputStream input = new FileInputStream("registrar.properties")) {
+  			prop.load(input);
+
+  			registrarPW = prop.getProperty("pw");
+  			registrarID = prop.getProperty("id");
+
+  		} catch (IOException e) {
+  			throw new IllegalArgumentException("Could not load registrar.properties");
+  		}
+	    
 	    //test if not logged in
 	    try {
 	        manager.enrollStudentInCourse(catalog.getCourseFromCatalog("CSC216", "001"));
@@ -199,7 +215,7 @@ public class RegistrationManagerTest {
 	    }
 	    
 	    //test if registrar is logged in
-	    manager.login("jsmith", "password");
+	    manager.login(registrarID, registrarPW);
 	    try {
 	        manager.enrollStudentInCourse(catalog.getCourseFromCatalog("CSC216", "001"));
 	        fail("RegistrationManager.enrollStudentInCourse() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
@@ -274,6 +290,22 @@ public class RegistrationManagerTest {
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
+	    //Set up the properties object for parsing registrar.properties
+		Properties prop = new Properties();
+		String registrarPW;
+		String registrarID;
+		
+		//Get the password and id from registrar.properties
+		try (InputStream input = new FileInputStream("registrar.properties")) {
+			prop.load(input);
+	
+			registrarPW = prop.getProperty("pw");
+			registrarID = prop.getProperty("id");
+	
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Could not load registrar.properties");
+		}
+	    
 	    //test if not logged in
 	    try {
 	        manager.dropStudentFromCourse(catalog.getCourseFromCatalog("CSC216", "001"));
@@ -283,7 +315,7 @@ public class RegistrationManagerTest {
 	    }
 	    
 	    //test if registrar is logged in
-	    manager.login("jsmith", "password");
+	    manager.login(registrarID, registrarPW);
 	    try {
 	        manager.dropStudentFromCourse(catalog.getCourseFromCatalog("CSC216", "001"));
 	        fail("RegistrationManager.dropStudentFromCourse() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
@@ -399,6 +431,22 @@ public class RegistrationManagerTest {
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
+	    //Set up the properties object for parsing registrar.properties
+  		Properties prop = new Properties();
+  		String registrarPW;
+  		String registrarID;
+  		
+  		//Get the password and id from registrar.properties
+  		try (InputStream input = new FileInputStream("registrar.properties")) {
+  			prop.load(input);
+
+  			registrarPW = prop.getProperty("pw");
+  			registrarID = prop.getProperty("id");
+
+  		} catch (IOException e) {
+  			throw new IllegalArgumentException("Could not load registrar.properties");
+  		}
+	    
 	    //Test if not logged in
 	    try {
 	        manager.resetSchedule();
@@ -408,7 +456,7 @@ public class RegistrationManagerTest {
 	    }
 	    
 	    //test if registrar is logged in
-	    manager.login("jsmith", "password");
+	    manager.login(registrarID, registrarPW);
 	    try {
 	        manager.resetSchedule();
 	        fail("RegistrationManager.resetSchedule() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
