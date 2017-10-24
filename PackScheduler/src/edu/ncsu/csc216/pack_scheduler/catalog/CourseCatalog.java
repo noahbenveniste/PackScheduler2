@@ -57,6 +57,7 @@ public class CourseCatalog {
 	 * @param section Section number of the Course
 	 * @param credits Number of credit hours for the Course
 	 * @param instructorID Course instructor's unity id
+	 * @param enrollmentCap the number of students that the course can take
 	 * @param meetingDays First letter of all days the Course meets
 	 * @param startTime the time the course starts
 	 * @param endTime the time the course ends
