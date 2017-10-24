@@ -705,11 +705,11 @@ public class CourseTest {
 	@Test
 	public void testToString() {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
-		String s1 = "CSC216,Programming Concepts - Java,001,4,sesmith5,MW,1330,1445";
+		String s1 = "CSC216,Programming Concepts - Java,001,4,sesmith5,100,MW,1330,1445";
 		assertEquals(s1, c1.toString());
 		
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, "A");
-		String s2 = "CSC216,Programming Concepts - Java,001,4,sesmith5,A";
+		String s2 = "CSC216,Programming Concepts - Java,001,4,sesmith5,100,A";
 		assertEquals(s2, c2.toString());
 	}
 
