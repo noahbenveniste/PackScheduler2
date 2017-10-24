@@ -37,7 +37,8 @@ public class ScheduleTest {
 		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
 		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
 		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
-		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100, 1230);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100,
+				1230);
 		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
 
 		// Test adding valid courses
@@ -74,7 +75,8 @@ public class ScheduleTest {
 		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
 		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
 		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
-		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100, 1230);
+		Course c4 = new Course("ECE331", "Principles of Electrical Engineering", "003", 3, "JJdoe", 10, "TH", 1100,
+				1230);
 
 		// Add the courses to the schedule
 		s.addCourseToSchedule(c1);
@@ -128,7 +130,6 @@ public class ScheduleTest {
 		assertEquals("002", courses[1][1]);
 		assertEquals("Data structures", courses[1][2]);
 		assertEquals("MW 12:00PM-1:00PM", courses[1][3]);
-		
 
 		s.addCourseToSchedule(c2);
 
@@ -230,24 +231,58 @@ public class ScheduleTest {
 	public void testSetTitle() {
 		// Create a new schedule
 		Schedule s = new Schedule();
-		
+
 		assertEquals("My Schedule", s.getTitle());
-		
+
 		// Try setting the title
 		s.setTitle("mY sCheDulE");
-		
+
 		assertEquals("mY sCheDulE", s.getTitle());
-		
-		//Try setting a null title
+
+		// Try setting a null title
 		s.resetSchedule();
 		String invalidString = null;
 		try {
 			s.setTitle(invalidString);
 			fail();
-		} catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			assertEquals("Title cannot be null", e.getMessage());
 			assertEquals("My Schedule", s.getTitle());
 		}
+	}
+
+	/**
+	 * Tests the canAdd method
+	 */
+	@Test
+	public void testCanAdd() {
+		// Create a new schedule
+		Schedule s = new Schedule();
+
+		// Create new courses to add to the schedule
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c2 = new Course("BW216", "Basket Weaving Concepts", "001", 3, "kwhildne", 10, "TH", 1200, 1300);
+		Course c3 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "MW", 1200, 1300);
+		Course c4 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+		Course c5 = new Course("CSC316", "Data structures", "002", 3, "jdoe", 10, "T", 1200, 1300);
+
+		// Test if a course can be added to an empty schedule
+		assertTrue(s.canAdd(c1));
+		
+		// Add courses to the schedule
+		s.addCourseToSchedule(c1);
+		s.addCourseToSchedule(c2);
+		s.addCourseToSchedule(c3);
+		
+		// Test if a duplicate can be added
+		assertFalse(s.canAdd(c4));
+		
+		// Test if a null course can be added
+		assertFalse(s.canAdd(null));
+		
+		// Test if a conflicting course can be added
+		assertFalse(s.canAdd(c5));
+
 	}
 
 }
