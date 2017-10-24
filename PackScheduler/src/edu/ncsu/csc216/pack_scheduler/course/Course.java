@@ -237,7 +237,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	@Override
 	public String[] getShortDisplayArray() {
-		return new String[] {this.getName(), this.getSection(), this.getTitle(), this.getMeetingString()};
+		return new String[] {this.getName(), this.getSection(), this.getTitle(), this.getMeetingString(), "" + this.roll.getOpenSeats()};
 	}
 
 	/**
@@ -338,8 +338,8 @@ public class Course extends Activity implements Comparable<Course> {
 	@Override
 	public String toString() {
 	    if (this.getMeetingDays().equals("A")) {
-	        return name + "," + this.getTitle() + "," + section + "," + credits + "," + instructorId + "," + this.getMeetingDays();
+	        return name + "," + this.getTitle() + "," + section + "," + credits + "," + instructorId + "," + this.roll.getEnrollmentCap() + "," + this.getMeetingDays();
 	    }
-	    return name + "," + this.getTitle() + "," + section + "," + credits + "," + instructorId + "," + this.getMeetingDays() + "," + this.getStartTime() + "," + this.getEndTime(); 
+	    return name + "," + this.getTitle() + "," + section + "," + credits + "," + instructorId + "," + this.roll.getEnrollmentCap() + "," + this.getMeetingDays() + "," + this.getStartTime() + "," + this.getEndTime(); 
 	}
 }
