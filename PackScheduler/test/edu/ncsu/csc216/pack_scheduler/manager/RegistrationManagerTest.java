@@ -220,7 +220,7 @@ public class RegistrationManagerTest {
 	        manager.enrollStudentInCourse(catalog.getCourseFromCatalog("CSC216", "001"));
 	        fail("RegistrationManager.enrollStudentInCourse() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
 	    } catch (IllegalArgumentException e) {
-	        assertEquals("RegistrationManager.enrollStudentInCourse() - currentUser is registrar, so cannot enroll in course.", "jsmith", manager.getCurrentUser().getId());
+	        assertEquals("RegistrationManager.enrollStudentInCourse() - currentUser is registrar, so cannot enroll in course.", registrarID , manager.getCurrentUser().getId());
 	    }
 	    manager.logout();
 	    
@@ -320,7 +320,7 @@ public class RegistrationManagerTest {
 	        manager.dropStudentFromCourse(catalog.getCourseFromCatalog("CSC216", "001"));
 	        fail("RegistrationManager.dropStudentFromCourse() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
 	    } catch (IllegalArgumentException e) {
-	        assertEquals("RegistrationManager.dropStudentFromCourse() - currentUser is registrar, so cannot enroll in course.", "jsmith", manager.getCurrentUser().getId());
+	        assertEquals("RegistrationManager.dropStudentFromCourse() - currentUser is registrar, so cannot enroll in course.", registrarID , manager.getCurrentUser().getId());
 	    }
 	    manager.logout();
 	    
@@ -461,7 +461,7 @@ public class RegistrationManagerTest {
 	        manager.resetSchedule();
 	        fail("RegistrationManager.resetSchedule() - If the current user is registrar, an IllegalArgumentException should be thrown, but was not.");
 	    } catch (IllegalArgumentException e) {
-	        assertEquals("RegistrationManager.resetSchedule() - currentUser is registrar, so cannot enroll in course.", "jsmith", manager.getCurrentUser().getId());
+	        assertEquals("RegistrationManager.resetSchedule() - currentUser is registrar, so cannot enroll in course.", registrarID , manager.getCurrentUser().getId());
 	    }
 	    manager.logout();
 	    
