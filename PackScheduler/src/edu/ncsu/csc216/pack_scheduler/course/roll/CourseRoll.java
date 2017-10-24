@@ -70,7 +70,7 @@ public class CourseRoll {
 		}
 		//Check for duplicates
 		for (int i = 0; i < this.roll.size(); i++) {
-			if (s.equals(this.roll.get(i))) {
+			if (this.roll.get(i).equals(s)) {
 				return false;
 			}
 		}
