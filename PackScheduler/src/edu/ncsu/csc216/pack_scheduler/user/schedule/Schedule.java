@@ -87,12 +87,9 @@ public class Schedule {
 	public String[][] getScheduledCourses() {
 		//Initialize string array with enough rows for all courses in the schedule and 4 columns,
 		//one for each field of interest for each course
-		String[][] courseArray = new String[this.schedule.size()][4];
+		String[][] courseArray = new String[this.schedule.size()][5];
 		for (int i = 0; i < this.schedule.size(); i++) {
-			courseArray[i][0] = this.schedule.get(i).getName();
-			courseArray[i][1] = this.schedule.get(i).getSection();
-			courseArray[i][2] = this.schedule.get(i).getTitle();
-			courseArray[i][3] = this.schedule.get(i).getMeetingString();
+			courseArray[i] = this.schedule.get(i).getShortDisplayArray();
 		}
 		return courseArray;
 	}
@@ -115,5 +112,40 @@ public class Schedule {
 			throw new IllegalArgumentException("Title cannot be null");
 		}
 		this.title = title;
+	}
+	
+	/**
+	 * Gets the cumulative sum of the credit values for all courses in the schedule.
+	 * @return the sum of the credit load of courses in schedule
+	 */
+	public int getScheduleCredits() {
+		int sum = 0;
+		for (int i = 0; i < this.schedule.size(); i++) {
+			sum += this.schedule.get(i).getCredits();
+		}
+		return sum;
+	}
+	
+	/**
+	 * Checks if a course can be added to the schedule.
+	 * @param c the course to be added
+	 * @return false if the course is null, the course is already in the schedule, or there is a conflict,
+	 * true otherwise.
+	 */
+	public boolean canAdd(Course c) {
+		if (c == null) { //Check that the input isn't null
+			return false;
+		}
+		for (int i = 0; i < this.schedule.size(); i++) {
+			if (c.equals(this.schedule.get(i))) { //Check that the course doesn't already exist in the schedule
+				return false;
+			}
+			try { //Check for conflicting courses
+				c.checkConflict(this.schedule.get(i));
+			} catch (ConflictException e) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
